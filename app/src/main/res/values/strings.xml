@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">KouveeCustomer</string>
+    <string name="information">Information</string>
+    <string name="product">Product</string>
+    <string name="service">Service</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image">Image</string>
+    <string name="search">Search</string>
+    <string name="sorting">Sorting</string>
+    <string name="a_z_price">A-Z Price</string>
+    <string name="z_a_price">Z-A Price</string>
+    <string name="a_z_stock">A-Z Stock</string>
+    <string name="z_a_stock">Z-A Stock</string>
+</resources>
