@@ -6,15 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kouveecustomer.ProductFragment
 import com.example.kouveecustomer.R
 import com.example.kouveecustomer.model.Product
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
-import java.util.ArrayList
+import java.util.*
 
-class ProductRecyclerViewAdapter(private val listener: (Product) -> Unit): RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder>() {
-
-    private var products: List<Product> = ArrayList()
+class ProductRecyclerViewAdapter(private val products: MutableList<Product>, private val listener: (Product) -> Unit): RecyclerView.Adapter<ProductRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewHolder = LayoutInflater.from(parent.context)
@@ -28,8 +27,20 @@ class ProductRecyclerViewAdapter(private val listener: (Product) -> Unit): Recyc
         holder.bindItem(products[position],listener)
     }
 
-    fun setProducts(productsList: List<Product>){
-        products = productsList
+    fun filterProduct(input: String){
+        ProductFragment.products.clear()
+        if (input.isEmpty()){
+            ProductFragment.products.addAll(products)
+        }else{
+            var i = 0
+            while (i < products.size){
+                if (products[i].name?.toLowerCase(Locale.getDefault())?.contains(input)!!){
+                    ProductFragment.products.add(products[i])
+                }
+                i++
+            }
+        }
+        notifyDataSetChanged()
     }
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

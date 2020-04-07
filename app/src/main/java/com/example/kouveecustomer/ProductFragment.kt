@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kouveecustomer.adapter.ProductRecyclerViewAdapter
 import com.example.kouveecustomer.model.Product
@@ -24,12 +26,13 @@ class ProductFragment : Fragment(), ProductView {
     private lateinit var productAdapter: ProductRecyclerViewAdapter
 
     private lateinit var presenter: ProductPresenter
-    private var products: MutableList<Product> = mutableListOf()
+    private var productsList: MutableList<Product> = mutableListOf()
 
     private val productsSorted = ArrayList<Product>()
 
     companion object {
         fun newInstance() = ProductFragment()
+        var products: MutableList<Product> = mutableListOf()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,48 +44,90 @@ class ProductFragment : Fragment(), ProductView {
         presenter = ProductPresenter(this, Repository())
         presenter.getAllProduct()
 
-        az_price.setOnClickListener {
-            sortByPriceAz()
+        search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                recyclerview.adapter = ProductRecyclerViewAdapter(products){
+                    Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+                }
+                query?.let { productAdapter.filterProduct(it) }
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                recyclerview.adapter = ProductRecyclerViewAdapter(products){
+                    Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+                }
+                newText?.let { productAdapter.filterProduct(it) }
+                return false
+            }
+        })
+
+        sort_switch.setOnClickListener {
+            if (show_price.isChecked){
+                if (sort_switch.isChecked){
+                    sortByPriceAz()
+                }else{
+                    sortByPriceZa()
+                }
+            }else if (show_stock.isChecked){
+                if (sort_switch.isChecked){
+                    sortByStockAz()
+                }else{
+                    sortByStockZa()
+                }
+            }
         }
 
-        za_price.setOnClickListener {
-            sortByPriceZa()
+        show_price.setOnClickListener {
+            if (sort_switch.isChecked){
+                sortByPriceAz()
+            }else{
+                sortByPriceZa()
+            }
         }
 
-        az_stock.setOnClickListener {
-            sortByStockAz()
+        show_stock.setOnClickListener {
+            if (sort_switch.isChecked){
+                sortByStockAz()
+            }else{
+                sortByStockZa()
+            }
         }
 
-        za_stock.setOnClickListener {
-            sortByStockZa()
-        }
     }
 
     private fun sortByPriceAz(){
         productsSorted.removeIf{ it.price == null}
         val sorted = productsSorted.sortedBy { it.price }
-        productAdapter.setProducts(sorted)
+        recyclerview.adapter = ProductRecyclerViewAdapter(sorted as MutableList<Product>){
+            Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+        }
         productAdapter.notifyDataSetChanged()
     }
 
     private fun sortByPriceZa(){
         productsSorted.removeIf{ it.price == null}
         val sorted = productsSorted.sortedByDescending { it.price }
-        productAdapter.setProducts(sorted)
+        recyclerview.adapter = ProductRecyclerViewAdapter(sorted as MutableList<Product>){
+            Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+        }
         productAdapter.notifyDataSetChanged()
     }
 
     private fun sortByStockAz(){
-        productsSorted.removeIf{ it.price == null}
+        productsSorted.removeIf{ it.stock == null}
         val sorted = productsSorted.sortedBy { it.stock }
-        productAdapter.setProducts(sorted)
+        recyclerview.adapter = ProductRecyclerViewAdapter(sorted as MutableList<Product>){
+            Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+        }
         productAdapter.notifyDataSetChanged()
     }
 
     private fun sortByStockZa(){
-        productsSorted.removeIf{ it.price == null}
+        productsSorted.removeIf{ it.stock == null}
         val sorted = productsSorted.sortedByDescending { it.stock }
-        productAdapter.setProducts(sorted)
+        recyclerview.adapter = ProductRecyclerViewAdapter(sorted as MutableList<Product>){
+            Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
+        }
         productAdapter.notifyDataSetChanged()
     }
 
@@ -99,16 +144,15 @@ class ProductFragment : Fragment(), ProductView {
         if (temp.isEmpty()){
             Toast.makeText(context, "Empty Product", Toast.LENGTH_LONG).show()
         }else{
-            products.addAll(temp)
-            productsSorted.addAll(products)
+            productsList.addAll(temp)
+            productsSorted.addAll(productsList)
             recyclerview.apply {
-                layoutManager = LinearLayoutManager(context)
-                productAdapter = ProductRecyclerViewAdapter{
+                layoutManager = GridLayoutManager(context, 2)
+                productAdapter = ProductRecyclerViewAdapter(productsList){
                     Toast.makeText(context, it.name, Toast.LENGTH_LONG).show()
                 }
                 adapter = productAdapter
             }
-            productAdapter.setProducts(products)
             Toast.makeText(context, "Success Product", Toast.LENGTH_LONG).show()
         }
     }

@@ -13,4 +13,5 @@
     <string name="z_a_price">Z-A Price</string>
     <string name="a_z_stock">A-Z Stock</string>
     <string name="z_a_stock">Z-A Stock</string>
+    <string name="sort_a_z">Sort A-Z</string>
 </resources>
