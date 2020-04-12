@@ -93,6 +93,10 @@ class ProductFragment : Fragment(), ProductView {
             }
         }
 
+        swipe_rv.setOnRefreshListener {
+            presenter.getAllProduct()
+        }
+
     }
 
     private fun sortByPriceAz(){
@@ -132,11 +136,11 @@ class ProductFragment : Fragment(), ProductView {
     }
 
     override fun showProductLoading() {
-        progressbar.visibility = View.VISIBLE
+        swipe_rv.isRefreshing = true
     }
 
     override fun hideProductLoading() {
-        progressbar.visibility = View.GONE
+        swipe_rv.isRefreshing = false
     }
 
     override fun productSuccess(data: ProductResponse?) {
