@@ -1,12 +1,7 @@
 package com.example.kouveecustomer.presenter
 
-import com.example.kouveecustomer.model.DetailServiceTransactionResponse
-import com.example.kouveecustomer.model.ProductResponse
-import com.example.kouveecustomer.model.TransactionResponse
-import com.example.kouveecustomer.repository.DetailServiceTransactionRepositoryCallback
-import com.example.kouveecustomer.repository.ProductRepositoryCallback
-import com.example.kouveecustomer.repository.Repository
-import com.example.kouveecustomer.repository.TransactionRepositoryCallback
+import com.example.kouveecustomer.model.*
+import com.example.kouveecustomer.repository.*
 
 //PRODUCT
 class ProductPresenter(private val view : ProductView, private val repository: Repository){
@@ -24,13 +19,14 @@ class ProductPresenter(private val view : ProductView, private val repository: R
             }
         })
     }
+
 }
 
 class TransactionPresenter(private val view: TransactionView, private val repository: Repository){
 
-    fun getServiceTransaction(){
+    fun getServiceTransaction(id: String){
         view.showTransactionLoading()
-        repository.getServiceTransaction(object : TransactionRepositoryCallback<TransactionResponse> {
+        repository.getServiceTransaction(id, object : TransactionRepositoryCallback<TransactionResponse> {
             override fun transactionSuccess(data: TransactionResponse?) {
                 view.transactionSuccess(data)
                 view.hideTransactionLoading()
@@ -41,6 +37,7 @@ class TransactionPresenter(private val view: TransactionView, private val reposi
             }
         })
     }
+
 }
 
 class DetailServiceTransactionPresenter(private val view: DetailServiceTransactionView, private val repository: Repository){
@@ -55,6 +52,42 @@ class DetailServiceTransactionPresenter(private val view: DetailServiceTransacti
             override fun detailServiceTransactionFailed() {
                 view.detailServiceTransactionFailed()
                 view.hideDetailServiceTransactionLoading()
+            }
+        })
+    }
+
+}
+
+class CustomerPetPresenter(private val view: CustomerPetView, private val repository: Repository){
+
+    fun getAllCustomerPet(){
+        view.showCustomerPetLoading()
+        repository.getAllCustomerPet(object : CustomerPetRepositoryCallback<CustomerPetResponse> {
+            override fun customerPetSuccess(data: CustomerPetResponse?) {
+                view.customerPetSuccess(data)
+                view.hideCustomerPetLoading()
+            }
+            override fun customerPetFailed() {
+                view.customerPetFailed()
+                view.hideCustomerPetLoading()
+            }
+        })
+    }
+
+}
+
+class ServicePresenter(private val view: ServiceView, private val repository: Repository){
+
+    fun getAllService(){
+        view.showServiceLoading()
+        repository.getAllService(object : ServiceRepositoryCallback<ServiceResponse> {
+            override fun serviceSuccess(data: ServiceResponse?) {
+                view.serviceSuccess(data)
+                view.hideServiceLoading()
+            }
+            override fun serviceFailed() {
+                view.serviceFailed()
+                view.hideServiceLoading()
             }
         })
     }

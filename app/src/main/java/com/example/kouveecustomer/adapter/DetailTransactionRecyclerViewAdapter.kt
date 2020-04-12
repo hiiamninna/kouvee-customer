@@ -29,7 +29,7 @@ class DetailTransactionRecyclerViewAdapter(private val detailServices: MutableLi
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        private var id: TextView = itemView.findViewById(R.id.id)
+        private var id: TextView = itemView.findViewById(R.id.id_transaction)
         private var quantity: TextView = itemView.findViewById(R.id.quantity)
         private var subtotal: TextView = itemView.findViewById(R.id.subtotal)
 

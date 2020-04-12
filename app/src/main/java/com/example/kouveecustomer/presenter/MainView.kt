@@ -1,11 +1,7 @@
 package com.example.kouveecustomer.presenter
 
-import com.example.kouveecustomer.model.DetailServiceTransactionResponse
-import com.example.kouveecustomer.model.ProductResponse
-import com.example.kouveecustomer.model.TransactionResponse
-import com.example.kouveecustomer.repository.DetailServiceTransactionRepositoryCallback
-import com.example.kouveecustomer.repository.ProductRepositoryCallback
-import com.example.kouveecustomer.repository.TransactionRepositoryCallback
+import com.example.kouveecustomer.model.*
+import com.example.kouveecustomer.repository.*
 
 interface ProductView : ProductRepositoryCallback<ProductResponse> {
     fun showProductLoading()
@@ -20,4 +16,14 @@ interface TransactionView: TransactionRepositoryCallback<TransactionResponse> {
 interface DetailServiceTransactionView: DetailServiceTransactionRepositoryCallback<DetailServiceTransactionResponse> {
     fun showDetailServiceTransactionLoading()
     fun hideDetailServiceTransactionLoading()
+}
+
+interface ServiceView: ServiceRepositoryCallback<ServiceResponse> {
+    fun showServiceLoading()
+    fun hideServiceLoading()
+}
+
+interface CustomerPetView: CustomerPetRepositoryCallback<CustomerPetResponse> {
+    fun showCustomerPetLoading()
+    fun hideCustomerPetLoading()
 }

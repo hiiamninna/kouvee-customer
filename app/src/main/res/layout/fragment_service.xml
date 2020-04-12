@@ -123,7 +123,7 @@
                 tools:ignore="SmallSp" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/id"
+                android:id="@+id/id_transaction"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -140,9 +140,9 @@
                 android:textColor="@color/colorGreyDark"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="@+id/id"
-                app:layout_constraintStart_toStartOf="@+id/id"
-                app:layout_constraintTop_toBottomOf="@+id/id"
+                app:layout_constraintEnd_toEndOf="@+id/id_transaction"
+                app:layout_constraintStart_toStartOf="@+id/id_transaction"
+                app:layout_constraintTop_toBottomOf="@+id/id_transaction"
                 tools:ignore="SmallSp" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -204,11 +204,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sub_detail"
             tools:listitem="@layout/item_detail_transaction" />
 

@@ -1,8 +1,6 @@
 package com.example.kouveecustomer.api
 
-import com.example.kouveecustomer.model.DetailServiceTransactionResponse
-import com.example.kouveecustomer.model.ProductResponse
-import com.example.kouveecustomer.model.TransactionResponse
+import com.example.kouveecustomer.model.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -15,9 +13,16 @@ interface ApiInterface {
 
     //SERVICE
     @GET("transaction/service/{id}")
-    fun getServiceTransaction(): Call<TransactionResponse>
+    fun getServiceTransaction(@Path("id")id: String): Call<TransactionResponse>
 
     @GET("detail_service_transaction/{id_transaction}")
     fun getDetailServiceTransaction(@Path("id_transaction")id_transaction: String): Call<DetailServiceTransactionResponse>
+
+    //ADDING
+    @GET("customer_petAll")
+    fun getAllCustomerPet(): Call<CustomerPetResponse>
+
+    @GET("serviceAll")
+    fun getAllService(): Call<ServiceResponse>
 
 }
