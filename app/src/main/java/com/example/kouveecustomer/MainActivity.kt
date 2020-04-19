@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
     companion object{
         var services: MutableList<Service> = mutableListOf()
         var pets: MutableList<CustomerPet> = mutableListOf()
+        var images: MutableList<Int> = mutableListOf()
     }
 
     private val navigationBottom = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -57,10 +58,22 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         navigation_bottom.setOnNavigationItemSelectedListener(navigationBottom)
+        getImage()
         presenterP.getAllCustomerPet()
         presenterS.getAllService()
         val fragment = AboutUsFragment.newInstance()
         addFragment(fragment)
+    }
+
+    private fun getImage(){
+        var i = 0
+        val image = resources.obtainTypedArray(R.array.image_pet_shop)
+        images.clear()
+        while(i<5){
+            images.add(image.getResourceId(i, 0))
+            i++
+        }
+        image.recycle()
     }
 
     override fun showServiceLoading() {
@@ -72,16 +85,16 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
     override fun serviceSuccess(data: ServiceResponse?) {
         val temp: List<Service> = data?.services ?: emptyList()
         if (temp.isEmpty()){
-            CustomView.warningSnackBar(container, baseContext, "Service empty")
+            CustomFun.warningSnackBar(container, baseContext, "Service empty")
         }else{
             services.clear()
             services.addAll(temp)
-            CustomView.successSnackBar(container, baseContext, "Service success")
+            CustomFun.successSnackBar(container, baseContext, "Service success")
         }
     }
 
     override fun serviceFailed() {
-        CustomView.failedSnackBar(container, baseContext, "Service failed")
+        CustomFun.failedSnackBar(container, baseContext, "Service failed")
     }
 
     override fun showCustomerPetLoading() {
@@ -93,15 +106,15 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
     override fun customerPetSuccess(data: CustomerPetResponse?) {
         val temp: List<CustomerPet> = data?.customerpets ?: emptyList()
         if (temp.isEmpty()){
-            CustomView.warningSnackBar(container, baseContext, "Pet empty")
+            CustomFun.warningSnackBar(container, baseContext, "Pet empty")
         }else{
             pets.clear()
             pets.addAll(temp)
-            CustomView.successSnackBar(container, baseContext, "Pet success")
+            CustomFun.successSnackBar(container, baseContext, "Pet success")
         }
     }
 
     override fun customerPetFailed() {
-        CustomView.failedSnackBar(container, baseContext, "Pet failed")
+        CustomFun.failedSnackBar(container, baseContext, "Pet failed")
     }
 }

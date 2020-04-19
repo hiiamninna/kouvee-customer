@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kouveecustomer.CustomFun
 import com.example.kouveecustomer.R
 import com.example.kouveecustomer.model.DetailServiceTransaction
 import com.example.kouveecustomer.model.Service
@@ -41,8 +42,7 @@ class DetailTransactionRecyclerViewAdapter(private val detailServices: MutableLi
             }
             quantity.text = detailServiceTransaction.quantity.toString()
             val total = detailServiceTransaction.subtotal_price.toString()
-            val rp = "Rp. $total"
-            subtotal.text = rp
+            subtotal.text = CustomFun.changeToRp(total.toDouble())
             containerView.setOnClickListener {
                 listener(detailServiceTransaction)
             }

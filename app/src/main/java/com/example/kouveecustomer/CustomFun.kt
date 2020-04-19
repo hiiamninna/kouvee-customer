@@ -1,14 +1,18 @@
 package com.example.kouveecustomer
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
+import java.text.NumberFormat
+import java.util.*
 
-object CustomView {
+object CustomFun {
 
     fun successSnackBar(viewInput: View, baseContext: Context, textInput: String){
         val snackBar = Snackbar.make(viewInput,textInput, Snackbar.LENGTH_INDEFINITE)
@@ -78,6 +82,19 @@ object CustomView {
         text.maxLines = 1
         text.setTypeface(null, Typeface.ITALIC)
         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
+    }
+
+    //CONVERTER
+    fun changeToRp(number: Double): String{
+        val id =  Locale("in", "ID")
+        val formatter = NumberFormat.getCurrencyInstance(id)
+        return formatter.format(number).toString()+",-"
+    }
+
+    //SWIPE LOADING
+    fun setSwipe(swipe: SwipeRefreshLayout){
+        swipe.setColorSchemeColors(Color.WHITE)
+        swipe.setProgressBackgroundColorSchemeResource(R.color.colorAccent)
     }
 
 }

@@ -1,14 +1,14 @@
 package com.example.kouveecustomer
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kouveecustomer.adapter.ProductRecyclerViewAdapter
 import com.example.kouveecustomer.model.Product
 import com.example.kouveecustomer.model.ProductResponse
@@ -16,7 +16,7 @@ import com.example.kouveecustomer.presenter.ProductPresenter
 import com.example.kouveecustomer.presenter.ProductView
 import com.example.kouveecustomer.repository.Repository
 import kotlinx.android.synthetic.main.fragment_product.*
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -29,6 +29,7 @@ class ProductFragment : Fragment(), ProductView {
     private var productsList: MutableList<Product> = mutableListOf()
 
     private val productsSorted = ArrayList<Product>()
+    private var selectedItem = -1
 
     companion object {
         fun newInstance() = ProductFragment()
@@ -60,43 +61,51 @@ class ProductFragment : Fragment(), ProductView {
                 return false
             }
         })
-
-        sort_switch.setOnClickListener {
-            if (show_price.isChecked){
-                if (sort_switch.isChecked){
-                    sortByPriceAz()
-                }else{
-                    sortByPriceZa()
-                }
-            }else if (show_stock.isChecked){
-                if (sort_switch.isChecked){
-                    sortByStockAz()
-                }else{
-                    sortByStockZa()
-                }
-            }
+        sort.setOnClickListener {
+            showFilterDialog()
         }
-
-        show_price.setOnClickListener {
-            if (sort_switch.isChecked){
-                sortByPriceAz()
-            }else{
-                sortByPriceZa()
-            }
-        }
-
-        show_stock.setOnClickListener {
-            if (sort_switch.isChecked){
-                sortByStockAz()
-            }else{
-                sortByStockZa()
-            }
-        }
-
         swipe_rv.setOnRefreshListener {
             presenter.getAllProduct()
         }
+        CustomFun.setSwipe(swipe_rv)
+    }
 
+    private fun showFilterDialog(){
+        val sort = arrayOf("Highest price", "Lowest price", "Maximum stock", "Minimum stock")
+        val dialogBuilder = context?.let { AlertDialog.Builder(it) }
+        dialogBuilder?.setTitle("Sort By")
+        dialogBuilder?.setSingleChoiceItems(sort, selectedItem) {
+                _, which ->
+            selectedItem = which
+        }
+        dialogBuilder?.setPositiveButton("APPLY"){
+                dialog, _ ->
+            when (selectedItem) {
+                0 -> {
+                    sortByPriceAz()
+                }
+                1 -> {
+                    sortByPriceZa()
+                }
+                2 -> {
+                    sortByStockAz()
+                }
+                3 -> {
+                    sortByStockZa()
+                }
+                else -> {
+                    dialog.dismiss()
+                }
+            }
+            selectedItem = -1
+            dialog.dismiss()
+        }
+        dialogBuilder?.setNegativeButton("CANCEL"){
+                dialog, _ ->
+            selectedItem = -1
+            dialog.dismiss()
+        }
+        dialogBuilder?.show()
     }
 
     private fun sortByPriceAz(){
@@ -148,6 +157,7 @@ class ProductFragment : Fragment(), ProductView {
         if (temp.isEmpty()){
             Toast.makeText(context, "Empty Product", Toast.LENGTH_LONG).show()
         }else{
+            clearList()
             productsList.addAll(temp)
             productsSorted.addAll(productsList)
             recyclerview.apply {
@@ -163,6 +173,11 @@ class ProductFragment : Fragment(), ProductView {
 
     override fun productFailed() {
         Toast.makeText(context, "Product Failed", Toast.LENGTH_LONG).show()
+    }
+
+    private fun clearList(){
+        productsList.clear()
+        productsSorted.clear()
     }
 
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kouveecustomer.CustomFun
 import com.example.kouveecustomer.ProductFragment
 import com.example.kouveecustomer.R
 import com.example.kouveecustomer.model.Product
@@ -57,8 +58,7 @@ class ProductRecyclerViewAdapter(private val products: MutableList<Product>, pri
             product.photo.let { Picasso.get().load(baseUrl+it).fit().into(photo) }
             name.text = product.name
             val priceP = product.price.toString()
-            val rp = "Rp. $priceP"
-            price.text = rp
+            price.text = CustomFun.changeToRp(priceP.toDouble())
             stock.text = product.stock.toString()
 
             containerView.setOnClickListener {

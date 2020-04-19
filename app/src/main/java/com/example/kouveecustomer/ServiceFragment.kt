@@ -101,13 +101,13 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         if (temp?.size == 0){
             setSuccessGone()
             setFailedVisible()
-            context?.let { view?.let { itView -> CustomView.failedSnackBar(itView, it, "Oops, try again") } }
+            context?.let { view?.let { itView -> CustomFun.failedSnackBar(itView, it, "Oops, try again") } }
         }else{
             setFailedGone()
             setSuccessVisible()
             transaction = temp?.get(0)!!
             setData(transaction)
-            context?.let { view?.let { itView -> CustomView.successSnackBar(itView, it, "Yes, found it") } }
+            context?.let { view?.let { itView -> CustomFun.successSnackBar(itView, it, "Yes, found it") } }
         }
     }
 
@@ -125,19 +125,19 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         setSuccessVisible()
         val temp: List<DetailServiceTransaction> = data?.detailServiceTransactions ?: emptyList()
         if (temp.isEmpty()){
-            context?.let { view?.let { itView -> CustomView.warningSnackBar(itView, it, "Oops, try again") } }
+            context?.let { view?.let { itView -> CustomFun.warningSnackBar(itView, it, "Oops, try again") } }
         }else{
             detailServices.addAll(temp)
             recyclerview.layoutManager = LinearLayoutManager(context)
             recyclerview.adapter = DetailTransactionRecyclerViewAdapter(detailServices, {}, MainActivity.services)
-            context?.let { view?.let { itView -> CustomView.successSnackBar(itView, it, "Yes, found it") } }
+            context?.let { view?.let { itView -> CustomFun.successSnackBar(itView, it, "Yes, found it") } }
         }
     }
 
     override fun detailServiceTransactionFailed() {
         setSuccessGone()
         setFailedVisible()
-        context?.let { view?.let { itView -> CustomView.failedSnackBar(itView, it, "Oops, try again") } }
+        context?.let { view?.let { itView -> CustomFun.failedSnackBar(itView, it, "Oops, try again") } }
     }
 
 }
