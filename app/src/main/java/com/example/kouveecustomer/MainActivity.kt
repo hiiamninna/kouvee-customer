@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
         var i = 0
         val image = resources.obtainTypedArray(R.array.image_pet_shop)
         images.clear()
-        while(i<5){
+        while(i<3){
             images.add(image.getResourceId(i, 0))
             i++
         }

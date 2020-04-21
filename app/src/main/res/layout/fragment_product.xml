@@ -7,7 +7,6 @@
     tools:context=".ProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/colorGrey"
         android:paddingHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +22,8 @@
             android:background="@drawable/background_rounded"
             app:layout_constraintEnd_toStartOf="@+id/sort"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Search">
 
         </androidx.appcompat.widget.SearchView>
 

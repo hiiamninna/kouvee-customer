@@ -1,16 +1,36 @@
 <resources>
+
+<!--GENERAL-->
     <string name="app_name">Kouvee Customer</string>
     <string name="information">Information</string>
     <string name="product">Product</string>
     <string name="service">Service</string>
 
+<!--ABOUT US-->
+    <string name="contact_us">Contact Us</string>
+
+    <string name="about_us">About Us</string>
+    <string name="about_desc">Kouvee Pet Shop is a pet shop that has been established since 2018
+    provides products and services in Yogyakarta. Kouvee Pet Shop
+    provide a variety of products for your pet such as food, accessories,
+    Equipment and others according to your pet\'s needs. Besides selling various
+    kinds of products, Kouvee Pet Shop also provides services such as care and care
+    animal.</string>
+
+    <string name="motto_1">caring your beloved pets</string>
+    <string name="motto_2">treat your pets as our friend</string>
+    <string name="motto_3">most comfortable place for pets</string>
+
     <string-array name="image_pet_shop">
         <item>@drawable/pet_shop_product</item>
         <item>@drawable/pet_shop_product</item>
         <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
     </string-array>
+
+    <string name="service_check">our services</string>
+
+    <string name="about_address">Jl. Moses Gatotkace No. 22 \nYogyakarta 55281 \n(0274) 357735</string>
+    <string name="about_web">http://www.sayanghewan.com</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -22,7 +42,7 @@
     <string name="a_z_stock">A-Z Stock</string>
     <string name="z_a_stock">Z-A Stock</string>
     <string name="sort_a_z">Sort A-Z</string>
-    <string name="welcome_and_enjoy">welcome and enjoy</string>
+    <string name="welcome_and_enjoy">welcome</string>
     <string name="title_service">Let\'s check your service</string>
     <string name="sub_title_service">In this page yout can ....</string>
     <string name="failed_service">Sorry, number not found</string>
@@ -31,17 +51,8 @@
     <string name="status">Status</string>
     <string name="total_price">Total Price</string>
     <string name="here_the_details">Here the details...</string>
-    <string name="about_us">About Us</string>
-    <string name="about_desc">change to eng Kouvee Pet Shop merupakan sebuah toko hewan yang sudah berdiri sejak tahun 2018
-        menyediakan produk dan jasa layanan yang berada di Kota Yogyakarta. Kouvee Pet Shop
-        menyediakan berbagai macam produk untuk hewan kesayangan anda seperti makanan, aksesoris,
-        perlengkapan dan lain-lain sesuai kebutuhan hewan kesayangan anda. Selain menjual berbagai
-        macam produk, Kouvee Pet Shop juga menyediakan jasa layanan seperti grooming dan penitipan
-        hewan.</string>
-    <string name="about_address">Jl. Moses Gatotkace No. 22 \nYogyakarta 55281 \n(0274) 357735</string>
-    <string name="about_web">http://www.sayanghewan.com</string>
     <string name="todo">TODO</string>
-    <string name="contact_us">Contact Us</string>
     <string name="gallery">Gallery</string>
     <string name="gallery_desc">This is out pet shop..</string>
+    <string name="our_motto">Our Motto</string>
 </resources>

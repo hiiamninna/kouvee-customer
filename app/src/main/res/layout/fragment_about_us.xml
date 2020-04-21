@@ -1,165 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AboutUsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/colorGrey"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
 
-        <ImageView
-            android:id="@+id/fab_fb"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/facebook"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toStartOf="@+id/fab_wa"
-            app:layout_constraintTop_toTopOf="@+id/fab_wa" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/fab_wa"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/whatsapp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toStartOf="@+id/fab_line"
-            app:layout_constraintTop_toTopOf="@+id/fab_line" />
+            <ImageView
+                android:id="@+id/fab_fb"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/facebook"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toStartOf="@+id/fab_wa"
+                app:layout_constraintTop_toTopOf="@+id/fab_wa" />
 
-        <ImageView
-            android:id="@+id/fab_ig"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/instagram"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toStartOf="@+id/fab_fb"
-            app:layout_constraintTop_toTopOf="@+id/fab_fb" />
+            <ImageView
+                android:id="@+id/fab_wa"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/whatsapp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toStartOf="@+id/fab_line"
+                app:layout_constraintTop_toTopOf="@+id/fab_line" />
 
-        <ImageView
-            android:id="@+id/fab_line"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/line"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/fab_ig"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/instagram"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toStartOf="@+id/fab_fb"
+                app:layout_constraintTop_toTopOf="@+id/fab_fb" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="64dp"
-            android:text="@string/about_us"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fab_wa" />
+            <ImageView
+                android:id="@+id/fab_line"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/line"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_contact"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="@string/contact_us"
-            app:layout_constraintBottom_toBottomOf="@+id/fab_ig"
-            app:layout_constraintEnd_toStartOf="@+id/fab_ig"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/fab_ig" />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/about_us"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fab_wa" />
 
-        <TextView
-            android:id="@+id/tv_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/about_desc"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="@+id/tv_title"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            <TextView
+                android:id="@+id/tv_contact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/contact_us"
+                app:layout_constraintBottom_toBottomOf="@+id/fab_ig"
+                app:layout_constraintEnd_toStartOf="@+id/fab_ig"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/fab_ig" />
 
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:text="@string/about_address"
-            app:layout_constraintBottom_toBottomOf="@+id/im_location"
-            app:layout_constraintEnd_toEndOf="@+id/tv_web"
-            app:layout_constraintStart_toEndOf="@+id/im_location"
-            app:layout_constraintTop_toTopOf="@+id/im_location" />
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/about_desc"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="@+id/tv_title"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-        <TextView
-            android:id="@+id/tv_web"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/about_web"
-            android:textAlignment="textEnd"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/our_motto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/our_motto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
-        <ImageView
-            android:id="@+id/im_location"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="32dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/location"
-            app:layout_constraintBottom_toTopOf="@+id/tv_web"
-            app:layout_constraintStart_toStartOf="@+id/tv_web"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+            <TextView
+                android:id="@+id/motto_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/motto_1"
+                app:layout_constraintEnd_toEndOf="@+id/our_motto"
+                app:layout_constraintStart_toStartOf="@+id/our_motto"
+                app:layout_constraintTop_toBottomOf="@+id/our_motto" />
 
-        <TextView
-            android:id="@+id/tv_pict"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:text="@string/gallery"
-            android:textAlignment="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+            <TextView
+                android:id="@+id/check_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/service_check"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_image" />
 
-        <TextView
-            android:id="@+id/tv_pict_desc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/gallery_desc"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_pict"
-            app:layout_constraintStart_toEndOf="@+id/tv_pict"
-            app:layout_constraintTop_toTopOf="@+id/tv_pict"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/motto_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/motto_2"
+                app:layout_constraintEnd_toEndOf="@+id/motto_1"
+                app:layout_constraintStart_toStartOf="@+id/motto_1"
+                app:layout_constraintTop_toBottomOf="@+id/motto_1" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_image"
-            android:layout_width="0dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_pict"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pict"
-            tools:listitem="@layout/item_image" />
+            <TextView
+                android:id="@+id/motto_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/motto_3"
+                app:layout_constraintEnd_toEndOf="@+id/motto_2"
+                app:layout_constraintStart_toStartOf="@+id/motto_2"
+                app:layout_constraintTop_toBottomOf="@+id/motto_2" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="@string/about_address"
+                app:layout_constraintBottom_toBottomOf="@+id/im_location"
+                app:layout_constraintEnd_toEndOf="@+id/tv_web"
+                app:layout_constraintStart_toEndOf="@+id/im_location"
+                app:layout_constraintTop_toTopOf="@+id/im_location" />
 
-</ScrollView>
+            <TextView
+                android:id="@+id/tv_web"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/about_web"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/im_location"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/location"
+                app:layout_constraintBottom_toTopOf="@+id/tv_web"
+                app:layout_constraintStart_toStartOf="@+id/tv_web"
+                app:layout_constraintTop_toBottomOf="@+id/check_service" />
+
+            <TextView
+                android:id="@+id/tv_pict"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/gallery"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/motto_3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_image"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_pict"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pict"
+                tools:listitem="@layout/item_image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    
+</FrameLayout>
