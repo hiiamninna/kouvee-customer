@@ -29,6 +29,24 @@
 
     <string name="service_check">our services</string>
 
+    <string-array name="customer_name">
+        <item> - Hendry Chrisna - </item>
+        <item> - Bagus Saputra - </item>
+        <item> - Novila Ninna - </item>
+    </string-array>
+
+    <string-array name="customer_desc">
+        <item>Great! My pet so happy, trusted pet shop. I will be back, wait me.</item>
+        <item>Great! My pet so happy, trusted pet shop. I will be back, wait me.</item>
+        <item>Great! My pet so happy, trusted pet shop. I will be back, wait me.</item>
+    </string-array>
+
+    <string-array name="customer_profile">
+        <item>@drawable/pet_shop_product</item>
+        <item>@drawable/pet_shop_product</item>
+        <item>@drawable/pet_shop_product</item>
+    </string-array>
+
     <string name="about_address">Jl. Moses Gatotkace No. 22 \nYogyakarta 55281 \n(0274) 357735</string>
     <string name="about_web">http://www.sayanghewan.com</string>
 

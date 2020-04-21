@@ -180,7 +180,7 @@
                 android:src="@drawable/location"
                 app:layout_constraintBottom_toTopOf="@+id/tv_web"
                 app:layout_constraintStart_toStartOf="@+id/tv_web"
-                app:layout_constraintTop_toBottomOf="@+id/check_service" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_customer" />
 
             <TextView
                 android:id="@+id/tv_pict"
@@ -204,6 +204,16 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_pict"
                 app:layout_constraintTop_toBottomOf="@+id/tv_pict"
                 tools:listitem="@layout/item_image" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/check_service"
+                tools:listitem="@layout/item_customer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

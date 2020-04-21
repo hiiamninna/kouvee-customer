@@ -3,10 +3,7 @@ package com.example.kouveecustomer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.kouveecustomer.model.CustomerPet
-import com.example.kouveecustomer.model.CustomerPetResponse
-import com.example.kouveecustomer.model.Service
-import com.example.kouveecustomer.model.ServiceResponse
+import com.example.kouveecustomer.model.*
 import com.example.kouveecustomer.presenter.CustomerPetPresenter
 import com.example.kouveecustomer.presenter.CustomerPetView
 import com.example.kouveecustomer.presenter.ServicePresenter
@@ -24,6 +21,7 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
         var services: MutableList<Service> = mutableListOf()
         var pets: MutableList<CustomerPet> = mutableListOf()
         var images: MutableList<Int> = mutableListOf()
+        var customers: MutableList<Customer> = mutableListOf()
     }
 
     private val navigationBottom = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -74,6 +72,15 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
             i++
         }
         image.recycle()
+
+        val name = resources.getStringArray(R.array.customer_name)
+        val desc = resources.getStringArray(R.array.customer_desc)
+        val imageC = resources.obtainTypedArray(R.array.customer_profile)
+        customers.clear()
+        for (i in name.indices){
+            customers.add(Customer(name[i], desc[i], imageC.getResourceId(i, 0)))
+        }
+        imageC.recycle()
     }
 
     override fun showServiceLoading() {
