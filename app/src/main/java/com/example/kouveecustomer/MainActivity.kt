@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
 
     companion object{
         var services: MutableList<Service> = mutableListOf()
+        var enServices: MutableList<Service> = mutableListOf()
         var pets: MutableList<CustomerPet> = mutableListOf()
         var images: MutableList<Int> = mutableListOf()
         var customers: MutableList<Customer> = mutableListOf()
@@ -94,8 +95,14 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
         if (temp.isEmpty()){
             CustomFun.warningSnackBar(container, baseContext, "Service empty")
         }else{
+            enServices.clear()
             services.clear()
             services.addAll(temp)
+            for (i in temp.indices){
+                if (temp[i].deleted_at.isNullOrEmpty()){
+                    enServices.add(temp[i])
+                }
+            }
             CustomFun.successSnackBar(container, baseContext, "Service success")
         }
     }

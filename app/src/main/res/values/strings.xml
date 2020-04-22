@@ -17,9 +17,9 @@
     kinds of products, Kouvee Pet Shop also provides services such as care and care
     animal.</string>
 
-    <string name="motto_1">caring your beloved pets</string>
-    <string name="motto_2">treat your pets as our friend</string>
-    <string name="motto_3">most comfortable place for pets</string>
+    <string name="motto_1">\"Caring your beloved pets.\"</string>
+    <string name="motto_2">\"Treat your pets as our friend.\"</string>
+    <string name="motto_3">\"Most comfortable place for pets.\"</string>
 
     <string-array name="image_pet_shop">
         <item>@drawable/pet_shop_product</item>
@@ -27,7 +27,7 @@
         <item>@drawable/pet_shop_product</item>
     </string-array>
 
-    <string name="service_check">our services</string>
+    <string name="service_check">Services</string>
 
     <string-array name="customer_name">
         <item> - Hendry Chrisna - </item>
@@ -73,4 +73,5 @@
     <string name="gallery">Gallery</string>
     <string name="gallery_desc">This is out pet shop..</string>
     <string name="our_motto">Our Motto</string>
+    <string name="they_said">They said ...</string>
 </resources>
