@@ -65,22 +65,6 @@ object CustomFun {
         snackBar.show()
     }
 
-    fun welcomeSnackBar(input: View, baseContext: Context, textInput: String){
-        val snackBar = Snackbar.make(input, textInput, Snackbar.LENGTH_LONG)
-        snackBar.setActionTextColor(
-            ContextCompat.getColor(baseContext, android.R.color.white)
-        )
-        snackBar.setAction("Close"){
-            snackBar.dismiss()
-        }
-        val view = snackBar.view
-        view.setBackgroundResource(R.drawable.snack_bar_welcome)
-        val textView = view.findViewById<TextView>(R.id.snackbar_text)
-        textView.setTextColor(ContextCompat.getColor(baseContext, android.R.color.white))
-        setTextView(textView)
-        snackBar.show()
-    }
-
     private fun setTextView(text: TextView){
         text.maxLines = 1
         text.setTypeface(null, Typeface.ITALIC)
@@ -108,8 +92,8 @@ object CustomFun {
             setCornerRadius(4f)
             setAlpha(0.9f)
             setTextTypeface(Typeface.BOLD)
-            setTextColorResource(android.R.color.white)
-            setBackgroundColorResource(R.color.colorGreyDark)
+            setTextColorResource(android.R.color.black)
+            setBackgroundColorResource(Color.YELLOW)
             setBalloonAnimation(BalloonAnimation.CIRCULAR)
             setAutoDismissDuration(3000L)
             when (type) {

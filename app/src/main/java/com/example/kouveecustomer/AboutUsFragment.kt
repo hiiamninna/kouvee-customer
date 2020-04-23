@@ -87,6 +87,12 @@ class AboutUsFragment : Fragment(), ServiceView {
         motto_3.text = third
     }
 
+    private fun setToolTips(){
+        fab_wa.setOnClickListener {
+            context?.let { it1 -> CustomFun.createToolTips(it1, "WA") }
+        }
+    }
+
     override fun showServiceLoading() {
         progress_circular.visibility = View.VISIBLE
     }

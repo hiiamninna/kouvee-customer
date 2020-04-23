@@ -30,8 +30,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/facebook"
                 android:contentDescription="@string/todo"
+                android:src="@drawable/facebook"
                 app:layout_constraintEnd_toStartOf="@+id/fab_wa"
                 app:layout_constraintTop_toTopOf="@+id/fab_wa" />
 
@@ -40,8 +40,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/whatsapp"
                 android:contentDescription="@string/todo"
+                android:src="@drawable/whatsapp"
                 app:layout_constraintEnd_toStartOf="@+id/fab_line"
                 app:layout_constraintTop_toTopOf="@+id/fab_line" />
 
@@ -50,21 +50,33 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/instagram"
                 android:contentDescription="@string/todo"
+                android:src="@drawable/instagram"
                 app:layout_constraintEnd_toStartOf="@+id/fab_fb"
                 app:layout_constraintTop_toTopOf="@+id/fab_fb" />
+
+            <ImageView
+                android:id="@+id/fab_web"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/fab_web"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_location" />
 
             <ImageView
                 android:id="@+id/fab_line"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/line"
+                android:layout_marginBottom="32dp"
                 android:contentDescription="@string/todo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/line"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fab_web"
+                app:layout_constraintTop_toTopOf="@+id/fab_web" />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -77,7 +89,7 @@
                 android:text="@string/about_us"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fab_wa" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_desc"
@@ -126,21 +138,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/rv_service" />
 
             <TextView
+                android:id="@+id/contact_us"
+                style="@style/TextTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/contact_us"
+                app:layout_constraintEnd_toEndOf="@+id/customer_test"
+                app:layout_constraintStart_toStartOf="@+id/customer_test"
+                app:layout_constraintTop_toBottomOf="@+id/rv_customer" />
+
+            <TextView
                 android:id="@+id/motto_2"
+                style="@style/TextMotto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                style="@style/TextMotto"
                 app:layout_constraintEnd_toEndOf="@+id/motto_1"
                 app:layout_constraintStart_toStartOf="@+id/motto_1"
                 app:layout_constraintTop_toBottomOf="@+id/motto_1" />
 
             <TextView
                 android:id="@+id/motto_3"
+                style="@style/TextMotto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                style="@style/TextMotto"
                 app:layout_constraintEnd_toEndOf="@+id/motto_2"
                 app:layout_constraintStart_toStartOf="@+id/motto_2"
                 app:layout_constraintTop_toBottomOf="@+id/motto_2" />
@@ -151,35 +174,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:text="@string/about_address"
-                app:layout_constraintBottom_toBottomOf="@+id/im_location"
-                app:layout_constraintEnd_toEndOf="@+id/tv_web"
+                app:layout_constraintEnd_toEndOf="@+id/contact_us"
                 app:layout_constraintStart_toEndOf="@+id/im_location"
                 app:layout_constraintTop_toTopOf="@+id/im_location" />
-
-            <TextView
-                android:id="@+id/tv_web"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
-                android:text="@string/about_web"
-                android:textAlignment="textEnd"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/im_location"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginTop="16dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/location"
-                app:layout_constraintBottom_toTopOf="@+id/tv_web"
-                app:layout_constraintStart_toStartOf="@+id/tv_web"
-                app:layout_constraintTop_toBottomOf="@+id/rv_customer" />
+                app:layout_constraintStart_toStartOf="@+id/contact_us"
+                app:layout_constraintTop_toBottomOf="@+id/contact_us" />
 
             <TextView
                 android:id="@+id/tv_pict"
@@ -197,13 +204,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_pict"
-                tools:listitem="@layout/item_image"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry"
+                tools:listitem="@layout/item_image" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_customer"
