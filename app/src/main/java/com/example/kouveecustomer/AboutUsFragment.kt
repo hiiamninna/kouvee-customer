@@ -1,6 +1,10 @@
 package com.example.kouveecustomer
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.BackgroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +44,7 @@ class AboutUsFragment : Fragment(), ServiceView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.getAllService()
+        setMotto()
         setImage()
         setCustomer()
     }
@@ -63,6 +68,23 @@ class AboutUsFragment : Fragment(), ServiceView {
             i++
         }
         image.recycle()
+    }
+
+    private fun setMotto(){
+        val yellowNeon = Color.parseColor("#f9ff21")
+        val orangeNeon = Color.parseColor("#dbff3d")
+        val greenNeon = Color.parseColor("#fffb97")
+
+        val first = SpannableString("\"Caring your beloved pets\"")
+        val second = SpannableString("\"Treat your pets as our friend\"")
+        val third = SpannableString("\"Comfortable place for pets\"")
+
+        first.setSpan(BackgroundColorSpan(greenNeon), 0, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        motto_1.text = first
+        second.setSpan(BackgroundColorSpan(yellowNeon), 19, 31, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        motto_2.text = second
+        third.setSpan(BackgroundColorSpan(orangeNeon), 0, 19, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        motto_3.text = third
     }
 
     override fun showServiceLoading() {

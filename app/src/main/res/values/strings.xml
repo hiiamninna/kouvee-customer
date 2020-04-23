@@ -19,7 +19,7 @@
 
     <string name="motto_1">\"Caring your beloved pets.\"</string>
     <string name="motto_2">\"Treat your pets as our friend.\"</string>
-    <string name="motto_3">\"Most comfortable place for pets.\"</string>
+    <string name="motto_3">\"Comfortable place for pets.\"</string>
 
     <string-array name="image_pet_shop">
         <item>@drawable/our_pet_shop_1</item>
@@ -29,7 +29,7 @@
         <item>@drawable/our_pet_shop_5</item>
     </string-array>
 
-    <string name="service_check">Services</string>
+    <string name="service_check">Popular Services</string>
 
     <string-array name="image_service">
         <item>@drawable/bath</item>
@@ -88,5 +88,5 @@
     <string name="gallery">Gallery</string>
     <string name="gallery_desc">This is out pet shop..</string>
     <string name="our_motto">Our Motto</string>
-    <string name="they_said">They said ...</string>
+    <string name="review">Review</string>
 </resources>

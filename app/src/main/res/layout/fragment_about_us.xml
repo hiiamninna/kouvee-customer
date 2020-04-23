@@ -75,29 +75,30 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/about_us"
-                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fab_wa" />
 
             <TextView
                 android:id="@+id/tv_desc"
+                style="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:justificationMode="inter_word"
                 android:text="@string/about_desc"
                 app:layout_constraintEnd_toEndOf="@+id/tv_title"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tools:targetApi="o" />
 
             <TextView
                 android:id="@+id/motto_1"
                 style="@style/TextMotto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/motto_1"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_desc"
                 app:layout_constraintStart_toStartOf="@+id/tv_desc"
                 app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
@@ -119,7 +120,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="@string/they_said"
+                android:text="@string/review"
                 app:layout_constraintEnd_toEndOf="@+id/check_service"
                 app:layout_constraintStart_toStartOf="@+id/check_service"
                 app:layout_constraintTop_toBottomOf="@+id/rv_service" />
@@ -129,7 +130,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/motto_2"
                 style="@style/TextMotto"
                 app:layout_constraintEnd_toEndOf="@+id/motto_1"
                 app:layout_constraintStart_toStartOf="@+id/motto_1"
@@ -140,7 +140,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/motto_3"
                 style="@style/TextMotto"
                 app:layout_constraintEnd_toEndOf="@+id/motto_2"
                 app:layout_constraintStart_toStartOf="@+id/motto_2"
@@ -210,7 +209,7 @@
                 android:id="@+id/rv_customer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +222,7 @@
                 android:id="@+id/rv_service"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
