@@ -22,26 +22,41 @@
     <string name="motto_3">\"Most comfortable place for pets.\"</string>
 
     <string-array name="image_pet_shop">
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
+        <item>@drawable/our_pet_shop_1</item>
+        <item>@drawable/our_pet_shop_2</item>
+        <item>@drawable/our_pet_shop_3</item>
+        <item>@drawable/our_pet_shop_4</item>
+        <item>@drawable/our_pet_shop_5</item>
     </string-array>
 
     <string name="service_check">Services</string>
 
+    <string-array name="image_service">
+        <item>@drawable/bath</item>
+        <item>@drawable/pedicure</item>
+        <item>@drawable/animal_care</item>
+        <item>@drawable/grooming</item>
+    </string-array>
+
     <string-array name="customer_name">
-        <item> - Hendry Chrisna - </item>
-        <item> - Bagus Saputra - </item>
-        <item> - Novila Ninna - </item>
+        <item> - Gregorius Chrisna M - </item>
+        <item> - Ninna Novila - </item>
+        <item> - Albertus Bagus S - </item>
+        <item> - Aldi Okta S - </item>
+        <item> - Hendry Roganda - </item>
     </string-array>
 
     <string-array name="customer_desc">
-        <item>Great! My pet so happy, trusted pet shop. I will be back, wait me.</item>
-        <item>Great! My pet so happy, trusted pet shop. I will be back, wait me.</item>
-        <item>Great! My pet so happy, trusted pet shop. I will be back, wait me.</item>
+        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
+        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
+        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
+        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
+        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
     </string-array>
 
     <string-array name="customer_profile">
+        <item>@drawable/pet_shop_product</item>
+        <item>@drawable/pet_shop_product</item>
         <item>@drawable/pet_shop_product</item>
         <item>@drawable/pet_shop_product</item>
         <item>@drawable/pet_shop_product</item>

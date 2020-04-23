@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/RobotoButtonStyle</item>
+    </style>
+
+    <style name="RobotoTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
+    </style>
+
+    <style name="RobotoButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">sans-serif-condensed-light</item>
     </style>
 
     <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -20,13 +30,24 @@
     </style>
 
     <style name="TextTitle" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
     </style>
 
     <style name="TextMotto" parent="TextAppearance.AppCompat.Large">
         <item name="android:textStyle">italic</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextTest" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textStyle">italic|bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="TextName" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

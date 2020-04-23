@@ -2,11 +2,14 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
+    android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:paddingStart="16dp"
     android:layout_marginVertical="8dp"
     android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:elevation="5dp"
+    app:cardElevation="5dp"
     app:cardCornerRadius="8dp"
     tools:ignore="RtlSymmetry">
 
@@ -17,19 +20,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/pict_customer"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/todo"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="250dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/pict_customer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/todo"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_customer"
+            style="@style/TextTest"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/name_customer"
+            style="@style/TextName"
+            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

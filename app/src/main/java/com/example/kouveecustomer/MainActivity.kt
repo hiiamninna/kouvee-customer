@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
 
     companion object{
         var services: MutableList<Service> = mutableListOf()
-        var enServices: MutableList<Service> = mutableListOf()
         var pets: MutableList<CustomerPet> = mutableListOf()
         var images: MutableList<Int> = mutableListOf()
         var customers: MutableList<Customer> = mutableListOf()
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
         var i = 0
         val image = resources.obtainTypedArray(R.array.image_pet_shop)
         images.clear()
-        while(i<3){
+        while(i<5){
             images.add(image.getResourceId(i, 0))
             i++
         }
@@ -92,18 +91,9 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
 
     override fun serviceSuccess(data: ServiceResponse?) {
         val temp: List<Service> = data?.services ?: emptyList()
-        if (temp.isEmpty()){
-            CustomFun.warningSnackBar(container, baseContext, "Service empty")
-        }else{
-            enServices.clear()
+        if (temp.isNotEmpty()){
             services.clear()
             services.addAll(temp)
-            for (i in temp.indices){
-                if (temp[i].deleted_at.isNullOrEmpty()){
-                    enServices.add(temp[i])
-                }
-            }
-            CustomFun.successSnackBar(container, baseContext, "Service success")
         }
     }
 
@@ -119,12 +109,9 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
 
     override fun customerPetSuccess(data: CustomerPetResponse?) {
         val temp: List<CustomerPet> = data?.customerpets ?: emptyList()
-        if (temp.isEmpty()){
-            CustomFun.warningSnackBar(container, baseContext, "Pet empty")
-        }else{
+        if (temp.isNotEmpty()){
             pets.clear()
             pets.addAll(temp)
-            CustomFun.successSnackBar(container, baseContext, "Pet success")
         }
     }
 

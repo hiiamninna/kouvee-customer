@@ -7,14 +7,15 @@
     android:paddingStart="16dp"
     android:layout_marginVertical="8dp"
     android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
     app:cardCornerRadius="8dp"
     tools:ignore="RtlSymmetry">
 
     <ImageView
         android:id="@+id/image_pet_shop"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="center"
-        android:contentDescription="@string/todo" />
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/todo"
+        android:scaleType="centerCrop" />
 
 </com.google.android.material.card.MaterialCardView>

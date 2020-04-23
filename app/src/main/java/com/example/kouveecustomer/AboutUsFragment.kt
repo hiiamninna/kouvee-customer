@@ -9,12 +9,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kouveecustomer.adapter.CustomerRecyclerViewAdapter
 import com.example.kouveecustomer.adapter.ImageRecyclerViewAdapter
 import com.example.kouveecustomer.adapter.ServiceRecyclerViewAdapter
+import com.example.kouveecustomer.model.Service
+import com.example.kouveecustomer.model.ServiceResponse
+import com.example.kouveecustomer.presenter.ServicePresenter
+import com.example.kouveecustomer.presenter.ServiceView
+import com.example.kouveecustomer.repository.Repository
 import kotlinx.android.synthetic.main.fragment_about_us.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class AboutUsFragment : Fragment() {
+class AboutUsFragment : Fragment(), ServiceView {
+
+    private val presenter = ServicePresenter(this, Repository())
+    private var enServices: MutableList<Service> = mutableListOf()
+
+    private var images: MutableList<Int> = mutableListOf()
 
     companion object {
         fun newInstance() = AboutUsFragment()
@@ -29,9 +39,9 @@ class AboutUsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter.getAllService()
         setImage()
         setCustomer()
-        setService()
     }
 
     private fun setImage(){
@@ -44,9 +54,41 @@ class AboutUsFragment : Fragment() {
         rv_customer.adapter = CustomerRecyclerViewAdapter(MainActivity.customers)
     }
 
-    private fun setService(){
-        rv_service.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rv_service.adapter = ServiceRecyclerViewAdapter(MainActivity.enServices)
+    private fun setResource(){
+        var i = 0
+        val image = resources.obtainTypedArray(R.array.image_service)
+        images.clear()
+        while(i<4){
+            images.add(image.getResourceId(i, 0))
+            i++
+        }
+        image.recycle()
+    }
+
+    override fun showServiceLoading() {
+        progress_circular.visibility = View.VISIBLE
+    }
+
+    override fun hideServiceLoading() {
+        progress_circular.visibility = View.GONE
+    }
+
+    override fun serviceSuccess(data: ServiceResponse?) {
+        setResource()
+        val temp: List<Service> = data?.services ?: emptyList()
+        if (temp.isNotEmpty()){
+            enServices.clear()
+            for (i in temp.indices){
+                if (temp[i].deleted_at.isNullOrEmpty()){
+                    enServices.add(temp[i])
+                }
+            }
+            rv_service.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            rv_service.adapter = ServiceRecyclerViewAdapter(images, enServices)
+        }
+    }
+
+    override fun serviceFailed() {
     }
 
 }
