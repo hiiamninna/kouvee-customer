@@ -12,52 +12,70 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/TextAppearance.AppCompat.Title"
+            style="@style/TextTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/title_service"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/sub_title"
-            style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/sub_title_service"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/title"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
-
-        <TextView
-            android:id="@+id/sub_detail"
-            style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/here_the_details"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/success_card"
-            app:layout_constraintStart_toStartOf="@+id/success_card"
-            app:layout_constraintTop_toBottomOf="@+id/success_card" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/background_rounded"
-            app:layout_constraintEnd_toEndOf="@+id/sub_title"
-            app:layout_constraintStart_toStartOf="@+id/sub_title"
-            app:layout_constraintTop_toBottomOf="@+id/sub_title" />
+            app:queryHint="@string/input_service_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/first_card"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="visible"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_view">
+            <ImageView
+                android:id="@+id/image_first"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:src="@drawable/first_service"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/text_first"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/looking_for"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/image_first"
+                app:layout_constraintStart_toStartOf="@+id/image_first"
+                app:layout_constraintTop_toBottomOf="@+id/image_first" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/failed_card"
-            android:background="@drawable/background_rounded"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
@@ -65,6 +83,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone"
+            android:elevation="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +92,7 @@
                 android:id="@+id/image_failed"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
+                android:src="@drawable/failed"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,28 +114,23 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/success_card"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:paddingVertical="16dp"
+            android:elevation="10dp"
             android:visibility="gone"
-            android:background="@drawable/background_rounded"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView4"
+                style="@style/TextLabelService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:text="@string/transaction_number"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="12sp"
-                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -123,6 +138,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/id_transaction"
+                style="@style/TextResultService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -132,13 +148,11 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView3"
+                style="@style/TextLabelService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/pet_name"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="12sp"
-                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/id_transaction"
                 app:layout_constraintStart_toStartOf="@+id/id_transaction"
                 app:layout_constraintTop_toBottomOf="@+id/id_transaction"
@@ -146,6 +160,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/pet"
+                style="@style/TextResultService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -155,13 +170,11 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView"
+                style="@style/TextLabelService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/status"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="12sp"
-                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/pet"
                 app:layout_constraintStart_toStartOf="@+id/pet"
                 app:layout_constraintTop_toBottomOf="@+id/pet"
@@ -169,6 +182,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/status"
+                style="@style/TextResultService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -178,13 +192,11 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView2"
+                style="@style/TextLabelService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/total_price"
-                android:textColor="@color/colorGreyDark"
-                android:textSize="12sp"
-                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/status"
                 app:layout_constraintStart_toStartOf="@+id/status"
                 app:layout_constraintTop_toBottomOf="@+id/status"
@@ -192,6 +204,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/total_price"
+                style="@style/TextResultService"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -199,19 +212,18 @@
                 app:layout_constraintStart_toStartOf="@+id/materialTextView2"
                 app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="32dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/total_price"
+                tools:listitem="@layout/item_detail_transaction" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sub_detail"
-            tools:listitem="@layout/item_detail_transaction" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

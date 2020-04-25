@@ -66,8 +66,16 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
             }
         }
         status.text = transaction.status
-        val price = transaction.total_price
-        total_price.text = "Rp. $price"
+        val price = transaction.total_price.toString()
+        total_price.text = CustomFun.changeToRp(price.toDouble())
+    }
+
+    private fun setFirstVisible(){
+        first_card.visibility = View.VISIBLE
+    }
+
+    private fun setFirstGone(){
+        first_card.visibility = View.GONE
     }
 
     private fun setFailedVisible(){
@@ -80,13 +88,11 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     private fun setSuccessVisible(){
         success_card.visibility = View.VISIBLE
-        sub_title.visibility = View.VISIBLE
         recyclerview.visibility = View.VISIBLE
     }
 
     private fun setSuccessGone(){
         success_card.visibility = View.GONE
-        sub_title.visibility = View.GONE
         recyclerview.visibility = View.GONE
     }
 
@@ -97,6 +103,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
     }
 
     override fun transactionSuccess(data: TransactionResponse?) {
+        setFirstGone()
         val temp = data?.transactions
         if (temp?.size == 0){
             setSuccessGone()
@@ -112,6 +119,9 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
     }
 
     override fun transactionFailed() {
+        setFirstGone()
+        setSuccessGone()
+        setFailedVisible()
     }
 
     override fun showDetailServiceTransactionLoading() {
@@ -121,12 +131,14 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
     }
 
     override fun detailServiceTransactionSuccess(data: DetailServiceTransactionResponse?) {
+        setFirstGone()
         setFailedGone()
         setSuccessVisible()
         val temp: List<DetailServiceTransaction> = data?.detailServiceTransactions ?: emptyList()
         if (temp.isEmpty()){
             context?.let { view?.let { itView -> CustomFun.warningSnackBar(itView, it, "Oops, try again") } }
         }else{
+            detailServices.clear()
             detailServices.addAll(temp)
             recyclerview.layoutManager = LinearLayoutManager(context)
             recyclerview.adapter = DetailTransactionRecyclerViewAdapter(detailServices, {}, MainActivity.services)
@@ -135,6 +147,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
     }
 
     override fun detailServiceTransactionFailed() {
+        setFirstGone()
         setSuccessGone()
         setFailedVisible()
         context?.let { view?.let { itView -> CustomFun.failedSnackBar(itView, it, "Oops, try again") } }

@@ -2,7 +2,7 @@
 
 <!--GENERAL-->
     <string name="app_name">Kouvee Customer</string>
-    <string name="information">Information</string>
+    <string name="information">About</string>
     <string name="product">Product</string>
     <string name="service">Service</string>
 
@@ -75,18 +75,17 @@
     <string name="a_z_stock">A-Z Stock</string>
     <string name="z_a_stock">Z-A Stock</string>
     <string name="sort_a_z">Sort A-Z</string>
-    <string name="welcome_and_enjoy">welcome</string>
-    <string name="title_service">Let\'s check your service</string>
-    <string name="sub_title_service">In this page yout can ....</string>
-    <string name="failed_service">Sorry, number not found</string>
-    <string name="transaction_number">Transaction Number</string>
+    <string name="welcome">welcome</string>
+    <string name="title_service">Check your service</string>
+    <string name="failed_service">Sorry, transaction not found</string>
+    <string name="transaction_number">Transaction ID</string>
     <string name="pet_name">Pet Name</string>
     <string name="status">Status</string>
     <string name="total_price">Total Price</string>
-    <string name="here_the_details">Here the details...</string>
     <string name="todo">TODO</string>
     <string name="gallery">Gallery</string>
     <string name="gallery_desc">This is out pet shop..</string>
-    <string name="our_motto">Our Motto</string>
     <string name="review">Review</string>
+    <string name="input_service_id">Transaction ID</string>
+    <string name="looking_for">Looking for transaction</string>
 </resources>

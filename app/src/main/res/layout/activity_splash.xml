@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/welcome_and_enjoy"
+        android:text="@string/welcome"
         android:textStyle="italic"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
