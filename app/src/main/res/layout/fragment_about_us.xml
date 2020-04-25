@@ -29,53 +29,62 @@
                 android:id="@+id/fab_fb"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/facebook"
-                app:layout_constraintEnd_toStartOf="@+id/fab_wa"
-                app:layout_constraintTop_toTopOf="@+id/fab_wa" />
+                app:layout_constraintStart_toEndOf="@+id/fab_ig"
+                app:layout_constraintTop_toTopOf="@+id/fab_ig" />
 
             <ImageView
                 android:id="@+id/fab_wa"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/whatsapp"
-                app:layout_constraintEnd_toStartOf="@+id/fab_line"
-                app:layout_constraintTop_toTopOf="@+id/fab_line" />
+                app:layout_constraintStart_toEndOf="@+id/fab_fb"
+                app:layout_constraintTop_toTopOf="@+id/fab_fb" />
 
             <ImageView
                 android:id="@+id/fab_ig"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/instagram"
-                app:layout_constraintEnd_toStartOf="@+id/fab_fb"
-                app:layout_constraintTop_toTopOf="@+id/fab_fb" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/contact_us"
+                app:layout_constraintTop_toBottomOf="@+id/contact_us" />
 
             <ImageView
                 android:id="@+id/fab_web"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="16dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/fab_web"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_location" />
+                app:layout_constraintStart_toEndOf="@+id/fab_line"
+                app:layout_constraintTop_toTopOf="@+id/fab_line" />
 
             <ImageView
                 android:id="@+id/fab_line"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginStart="16dp"
                 android:contentDescription="@string/todo"
                 android:src="@drawable/line"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fab_web"
+                app:layout_constraintStart_toEndOf="@+id/fab_wa"
+                app:layout_constraintTop_toTopOf="@+id/fab_wa" />
+
+            <ImageView
+                android:id="@+id/fab_loc"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/maps"
+                android:contentDescription="@string/todo"
+                app:layout_constraintStart_toEndOf="@+id/fab_web"
                 app:layout_constraintTop_toTopOf="@+id/fab_web" />
 
             <TextView
@@ -84,7 +93,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/about_us"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,26 +176,6 @@
                 app:layout_constraintEnd_toEndOf="@+id/motto_2"
                 app:layout_constraintStart_toStartOf="@+id/motto_2"
                 app:layout_constraintTop_toBottomOf="@+id/motto_2" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:text="@string/about_address"
-                app:layout_constraintEnd_toEndOf="@+id/contact_us"
-                app:layout_constraintStart_toEndOf="@+id/im_location"
-                app:layout_constraintTop_toTopOf="@+id/im_location" />
-
-            <ImageView
-                android:id="@+id/im_location"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:contentDescription="@string/todo"
-                android:src="@drawable/location"
-                app:layout_constraintStart_toStartOf="@+id/contact_us"
-                app:layout_constraintTop_toBottomOf="@+id/contact_us" />
 
             <TextView
                 android:id="@+id/tv_pict"
