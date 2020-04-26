@@ -62,7 +62,7 @@
         <item>@drawable/pet_shop_product</item>
     </string-array>
 
-    <string name="about_address">Jl. Moses Gatotkace No. 22 \nYogyakarta 55281 \n(0274) 357735</string>
+    <string name="about_address">Jl. Moses Gatotkaca No. 22 \nYogyakarta 55281 \n(0274) 357735</string>
     <string name="about_web">http://www.sayanghewan.com</string>
 
     <!-- TODO: Remove or change this placeholder text -->

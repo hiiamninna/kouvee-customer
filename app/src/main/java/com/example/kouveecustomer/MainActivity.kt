@@ -1,6 +1,8 @@
 package com.example.kouveecustomer
 
+import android.content.DialogInterface
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.kouveecustomer.model.*
@@ -12,14 +14,9 @@ import com.example.kouveecustomer.repository.Repository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
-
-    private var presenterS: ServicePresenter = ServicePresenter(this, Repository())
-    private var presenterP: CustomerPetPresenter = CustomerPetPresenter(this, Repository())
+class MainActivity : AppCompatActivity() {
 
     companion object{
-        var services: MutableList<Service> = mutableListOf()
-        var pets: MutableList<CustomerPet> = mutableListOf()
         var images: MutableList<Int> = mutableListOf()
         var customers: MutableList<Customer> = mutableListOf()
     }
@@ -57,8 +54,6 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
         setContentView(R.layout.activity_main)
         navigation_bottom.setOnNavigationItemSelectedListener(navigationBottom)
         getImage()
-        presenterP.getAllCustomerPet()
-        presenterS.getAllService()
         val fragment = AboutUsFragment.newInstance()
         addFragment(fragment)
     }
@@ -81,41 +76,5 @@ class MainActivity : AppCompatActivity(), ServiceView, CustomerPetView {
             customers.add(Customer(name[i], desc[i], imageC.getResourceId(i, 0)))
         }
         imageC.recycle()
-    }
-
-    override fun showServiceLoading() {
-    }
-
-    override fun hideServiceLoading() {
-    }
-
-    override fun serviceSuccess(data: ServiceResponse?) {
-        val temp: List<Service> = data?.services ?: emptyList()
-        if (temp.isNotEmpty()){
-            services.clear()
-            services.addAll(temp)
-        }
-    }
-
-    override fun serviceFailed() {
-        CustomFun.failedSnackBar(container, baseContext, "Service failed")
-    }
-
-    override fun showCustomerPetLoading() {
-    }
-
-    override fun hideCustomerPetLoading() {
-    }
-
-    override fun customerPetSuccess(data: CustomerPetResponse?) {
-        val temp: List<CustomerPet> = data?.customerpets ?: emptyList()
-        if (temp.isNotEmpty()){
-            pets.clear()
-            pets.addAll(temp)
-        }
-    }
-
-    override fun customerPetFailed() {
-        CustomFun.failedSnackBar(container, baseContext, "Pet failed")
     }
 }

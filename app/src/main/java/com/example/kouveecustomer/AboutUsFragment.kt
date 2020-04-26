@@ -37,6 +37,7 @@ class AboutUsFragment : Fragment(), ServiceView {
     private var enServices: MutableList<Service> = mutableListOf()
 
     private var images: MutableList<Int> = mutableListOf()
+    private var alertDialog: AlertDialog? = null
 
     companion object {
         fun newInstance() = AboutUsFragment()
@@ -123,6 +124,9 @@ class AboutUsFragment : Fragment(), ServiceView {
     }
 
     override fun serviceSuccess(data: ServiceResponse?) {
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
         setResource()
         val temp: List<Service> = data?.services ?: emptyList()
         if (temp.isNotEmpty()){
@@ -138,11 +142,11 @@ class AboutUsFragment : Fragment(), ServiceView {
     }
 
     override fun serviceFailed() {
+        warningDialog()
     }
 
     private fun showDialog(context: Context, type: String){
         val builder = AlertDialog.Builder(context)
-        val alert: AlertDialog
 
         when(type){
             "IG" -> {
@@ -187,14 +191,16 @@ class AboutUsFragment : Fragment(), ServiceView {
                     .setPositiveButton("Open Google Maps"){ _: DialogInterface, _: Int ->
                         startNewApp("LOC")
                     }
+
             }
         }
+        builder.setCancelable(false)
+        val alertDialog = builder
+            .setNeutralButton("Cancel"){ _: DialogInterface, _: Int ->
+            }
+            .create()
 
-        alert = builder.create()
-        builder.setNeutralButton("Cancel"){ _: DialogInterface, _: Int ->
-            alert.dismiss()
-        }
-        alert.show()
+        alertDialog.show()
     }
 
 
@@ -265,6 +271,20 @@ class AboutUsFragment : Fragment(), ServiceView {
                 startActivity(newIntent)
             }
         }
+    }
+
+    private fun warningDialog(){
+        alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Warning message")
+            .setMessage("We needs internet connection to get some data, so make sure it run clearly.")
+            .setNeutralButton("EXIT"){ _: DialogInterface, _: Int ->
+                requireActivity().finishAffinity()
+            }
+            .setPositiveButton("TRY AGAIN"){ _: DialogInterface, _: Int ->
+                presenter.getAllService()
+            }
+            .setCancelable(false)
+            .show()
     }
 
 }

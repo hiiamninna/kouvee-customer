@@ -1,36 +1,37 @@
 package com.example.kouveecustomer
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kouveecustomer.MainActivity.Companion.pets
 import com.example.kouveecustomer.adapter.DetailTransactionRecyclerViewAdapter
-import com.example.kouveecustomer.model.DetailServiceTransaction
-import com.example.kouveecustomer.model.DetailServiceTransactionResponse
-import com.example.kouveecustomer.model.Transaction
-import com.example.kouveecustomer.model.TransactionResponse
-import com.example.kouveecustomer.presenter.DetailServiceTransactionPresenter
-import com.example.kouveecustomer.presenter.DetailServiceTransactionView
-import com.example.kouveecustomer.presenter.TransactionPresenter
-import com.example.kouveecustomer.presenter.TransactionView
+import com.example.kouveecustomer.model.*
+import com.example.kouveecustomer.presenter.*
 import com.example.kouveecustomer.repository.Repository
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_service.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionView {
+class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionView, ServiceView, CustomerPetView {
 
     private lateinit var transaction: Transaction
     private lateinit var idTransaction: String
     private var detailServices: MutableList<DetailServiceTransaction> = mutableListOf()
+    private var services: MutableList<Service> = mutableListOf()
+    private var pets: MutableList<CustomerPet> = mutableListOf()
 
     private var presenterT = TransactionPresenter(this, Repository())
     private var presenterD = DetailServiceTransactionPresenter(this, Repository())
+    private var presenterS: ServicePresenter = ServicePresenter(this, Repository())
+    private var presenterP: CustomerPetPresenter = CustomerPetPresenter(this, Repository())
+    private var alertDialog: AlertDialog? = null
 
     companion object {
         fun newInstance() = ServiceFragment()
@@ -45,6 +46,8 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenterP.getAllCustomerPet()
+        presenterS.getAllService()
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 idTransaction = query.toString()
@@ -68,10 +71,6 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         status.text = transaction.status
         val price = transaction.total_price.toString()
         total_price.text = CustomFun.changeToRp(price.toDouble())
-    }
-
-    private fun setFirstVisible(){
-        first_card.visibility = View.VISIBLE
     }
 
     private fun setFirstGone(){
@@ -141,7 +140,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
             detailServices.clear()
             detailServices.addAll(temp)
             recyclerview.layoutManager = LinearLayoutManager(context)
-            recyclerview.adapter = DetailTransactionRecyclerViewAdapter(detailServices, {}, MainActivity.services)
+            recyclerview.adapter = DetailTransactionRecyclerViewAdapter(detailServices, {}, services)
             context?.let { view?.let { itView -> CustomFun.successSnackBar(itView, it, "Yes, found it") } }
         }
     }
@@ -151,6 +150,65 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         setSuccessGone()
         setFailedVisible()
         context?.let { view?.let { itView -> CustomFun.failedSnackBar(itView, it, "Oops, try again") } }
+    }
+
+    override fun showServiceLoading() {
+    }
+
+    override fun hideServiceLoading() {
+    }
+
+    override fun serviceSuccess(data: ServiceResponse?) {
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
+        val temp: List<Service> = data?.services ?: emptyList()
+        if (temp.isNotEmpty()){
+            services.clear()
+            services.addAll(temp)
+        }
+    }
+
+    override fun serviceFailed() {
+        warningDialog()
+        context?.let { CustomFun.failedSnackBar(container, it, "Service failed") }
+    }
+
+    override fun showCustomerPetLoading() {
+    }
+
+    override fun hideCustomerPetLoading() {
+    }
+
+    override fun customerPetSuccess(data: CustomerPetResponse?) {
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
+        val temp: List<CustomerPet> = data?.customerpets ?: emptyList()
+        if (temp.isNotEmpty()){
+            pets.clear()
+            pets.addAll(temp)
+        }
+    }
+
+    override fun customerPetFailed() {
+        warningDialog()
+        context?.let { CustomFun.failedSnackBar(container, it, "Pet failed") }
+    }
+
+    private fun warningDialog(){
+        alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle("Warning message")
+            .setMessage("We needs internet connection to get some data, so make sure it run clearly.")
+            .setNeutralButton("EXIT"){ _: DialogInterface, _: Int ->
+                requireActivity().finishAffinity()
+            }
+            .setPositiveButton("TRY AGAIN"){ _: DialogInterface, _: Int ->
+                presenterS.getAllService()
+                presenterP.getAllCustomerPet()
+            }
+            .setCancelable(false)
+            .show()
     }
 
 }
