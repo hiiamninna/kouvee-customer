@@ -72,26 +72,26 @@ class ProductFragment : Fragment(), ProductView {
 
     private fun showFilterDialog(){
         val sort = arrayOf("Highest price", "Lowest price", "Maximum stock", "Minimum stock")
-        val dialogBuilder = context?.let { AlertDialog.Builder(it) }
-        dialogBuilder?.setTitle("Sort By")
-        dialogBuilder?.setSingleChoiceItems(sort, selectedItem) {
-                _, which ->
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setTitle("Sort By")
+        dialogBuilder.setIcon(R.drawable.filter)
+        dialogBuilder.setCancelable(false)
+        dialogBuilder.setSingleChoiceItems(sort, selectedItem) { _, which ->
             selectedItem = which
         }
-        dialogBuilder?.setPositiveButton("APPLY"){
-                dialog, _ ->
+        dialogBuilder.setPositiveButton("APPLY"){ dialog, _ ->
             when (selectedItem) {
                 0 -> {
-                    sortByPriceAz()
-                }
-                1 -> {
                     sortByPriceZa()
                 }
+                1 -> {
+                    sortByPriceAz()
+                }
                 2 -> {
-                    sortByStockAz()
+                    sortByStockZa()
                 }
                 3 -> {
-                    sortByStockZa()
+                    sortByStockAz()
                 }
                 else -> {
                     dialog.dismiss()
@@ -100,12 +100,11 @@ class ProductFragment : Fragment(), ProductView {
             selectedItem = -1
             dialog.dismiss()
         }
-        dialogBuilder?.setNegativeButton("CANCEL"){
-                dialog, _ ->
+        dialogBuilder.setNegativeButton("CANCEL"){ dialog, _ ->
             selectedItem = -1
             dialog.dismiss()
         }
-        dialogBuilder?.show()
+        dialogBuilder.show()
     }
 
     private fun sortByPriceAz(){

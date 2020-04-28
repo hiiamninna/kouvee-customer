@@ -195,12 +195,10 @@ class AboutUsFragment : Fragment(), ServiceView {
             }
         }
         builder.setCancelable(false)
-        val alertDialog = builder
-            .setNeutralButton("Cancel"){ _: DialogInterface, _: Int ->
+            .setNeutralButton("Cancel"){ dialog: DialogInterface, _: Int ->
+                dialog.dismiss()
             }
-            .create()
-
-        alertDialog.show()
+            .show()
     }
 
 
