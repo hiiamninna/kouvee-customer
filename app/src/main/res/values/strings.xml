@@ -47,19 +47,19 @@
     </string-array>
 
     <string-array name="customer_desc">
-        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
-        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
-        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
-        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
-        <item>\"Great! My pet so happy, trusted pet shop. I will be back, wait me.\"</item>
+        <item>\"The service is very satisfying, my pet happy to visit the pet shop. \nThank you Kouvee Pet Shop.\"</item>
+        <item>\"So great and comfortable! My pet so happy, trusted pet shop. \nI will be back, waiting me.\"</item>
+        <item>\"Kouvee has satisfying service, the price of the service is also affordable. \nThx Kouvee pet shop.\"</item>
+        <item>\"The best in Yogyakarta, the service is friendly and professional, it\'s definitely a subscription here, like it !!!\"</item>
+        <item>\"The service is also sophisticated, there is a notification of service status so customers don\'t need to go back. The best!\"</item>
     </string-array>
 
     <string-array name="customer_profile">
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
-        <item>@drawable/pet_shop_product</item>
+        <item>@drawable/greg</item>
+        <item>@drawable/ninna</item>
+        <item>@drawable/albert</item>
+        <item>@drawable/aldi</item>
+        <item>@drawable/hendry</item>
     </string-array>
 
     <string name="about_address">Jl. Moses Gatotkaca No. 22 \nYogyakarta 55281 \n(0274) 357735</string>
