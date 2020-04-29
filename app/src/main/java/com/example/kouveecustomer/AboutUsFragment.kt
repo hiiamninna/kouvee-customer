@@ -152,35 +152,35 @@ class AboutUsFragment : Fragment(), ServiceView {
             "IG" -> {
                 builder.setTitle("@kouveepetshop")
                     .setIcon(R.drawable.instagram)
-                    .setPositiveButton("Open Instagram"){ _: DialogInterface, _: Int ->
+                    .setPositiveButton("Open"){ _: DialogInterface, _: Int ->
                         startNewApp("IG")
                     }
             }
             "FB" -> {
-                builder.setTitle("Kouvee Pet Shop")
+                builder.setTitle("Kouvee Pet Shop (soon)")
                     .setIcon(R.drawable.facebook)
-                    .setPositiveButton("Open Facebook"){ _: DialogInterface, _: Int ->
+                    .setPositiveButton("Open"){ _: DialogInterface, _: Int ->
                         startNewApp("FB")
                     }
             }
             "WA" -> {
                 builder.setTitle("+62 812 3456 7890")
                     .setIcon(R.drawable.whatsapp)
-                    .setPositiveButton("Open WhatsApp"){ _: DialogInterface, _: Int ->
+                    .setPositiveButton("Open"){ _: DialogInterface, _: Int ->
                         startNewApp("WA")
                     }
             }
             "LN" -> {
                 builder.setTitle("@kouveepetshop")
                     .setIcon(R.drawable.line)
-                    .setPositiveButton("Open Line"){ _: DialogInterface, _: Int ->
+                    .setPositiveButton("Open"){ _: DialogInterface, _: Int ->
                         startNewApp("LN")
                     }
             }
             "WEB" -> {
                 builder.setTitle("https://www.sayanghewan.com")
                     .setIcon(R.drawable.fab_web)
-                    .setPositiveButton("Open Chrome"){ _: DialogInterface, _: Int ->
+                    .setPositiveButton("Open"){ _: DialogInterface, _: Int ->
                         startNewApp("WEB")
                     }
             }
@@ -188,14 +188,14 @@ class AboutUsFragment : Fragment(), ServiceView {
                 builder.setTitle("Our Location")
                     .setMessage(getString(R.string.about_address))
                     .setIcon(R.drawable.maps)
-                    .setPositiveButton("Open Google Maps"){ _: DialogInterface, _: Int ->
+                    .setPositiveButton("Open"){ _: DialogInterface, _: Int ->
                         startNewApp("LOC")
                     }
 
             }
         }
         builder.setCancelable(false)
-            .setNeutralButton("Cancel"){ dialog: DialogInterface, _: Int ->
+            .setNegativeButton("Cancel"){ dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
             }
             .show()
@@ -212,7 +212,7 @@ class AboutUsFragment : Fragment(), ServiceView {
             // TRIPLE DOT URL SCHEME
             when(type){
                 "IG" -> {
-                    newIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/_u/nin.nanovila"))
+                    newIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/_u/kouveepetshop"))
                     activities = context.packageManager.queryIntentActivities(newIntent, 0)
                     isSafe = activities.isNotEmpty()
                     newIntent(isSafe, newIntent)
@@ -224,7 +224,7 @@ class AboutUsFragment : Fragment(), ServiceView {
                     newIntent(isSafe, newIntent)
                 }
                 "WA" -> {
-                    val number = "+62877-5298-2303"
+                    val number = "+62821-3377-5050"
                     newIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=$number"))
                     activities = context.packageManager.queryIntentActivities(newIntent, 0)
                     isSafe = activities.isNotEmpty()
@@ -245,7 +245,7 @@ class AboutUsFragment : Fragment(), ServiceView {
                     newIntent(isSafe, newIntent)
                 }
                 "LOC" -> {
-                    val location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California")
+                    val location = Uri.parse("https://goo.gl/maps/WPBrhuFFprpa4Hzs6")
                     newIntent = Intent(Intent.ACTION_VIEW, location)
                     activities = context.packageManager.queryIntentActivities(newIntent, 0)
                     isSafe = activities.isNotEmpty()
