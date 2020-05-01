@@ -13,7 +13,6 @@ import com.example.kouveecustomer.adapter.DetailTransactionRecyclerViewAdapter
 import com.example.kouveecustomer.model.*
 import com.example.kouveecustomer.presenter.*
 import com.example.kouveecustomer.repository.Repository
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_service.*
 
 /**
@@ -29,8 +28,8 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     private var presenterT = TransactionPresenter(this, Repository())
     private var presenterD = DetailServiceTransactionPresenter(this, Repository())
-    private var presenterS: ServicePresenter = ServicePresenter(this, Repository())
-    private var presenterP: CustomerPetPresenter = CustomerPetPresenter(this, Repository())
+    private lateinit var presenterS: ServicePresenter
+    private lateinit var presenterP: CustomerPetPresenter
     private var alertDialog: AlertDialog? = null
 
     companion object {
@@ -46,8 +45,11 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenterP = CustomerPetPresenter(this, Repository())
         presenterP.getAllCustomerPet()
+        presenterS = ServicePresenter(this, Repository())
         presenterS.getAllService()
+        if (!CustomFun.verifiedNetwork(requireActivity())) warningDialog()
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 idTransaction = query.toString()
@@ -162,6 +164,9 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         if (alertDialog != null){
             alertDialog?.dismiss()
         }
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
         val temp: List<Service> = data?.services ?: emptyList()
         if (temp.isNotEmpty()){
             services.clear()
@@ -198,6 +203,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     private fun warningDialog(){
         alertDialog = AlertDialog.Builder(requireContext())
+            .setIcon(R.drawable.alert)
             .setTitle("Warning message")
             .setMessage("We needs internet connection to get some data, so make sure it run clearly.")
             .setNeutralButton("EXIT"){ _: DialogInterface, _: Int ->
@@ -210,5 +216,6 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
             .setCancelable(false)
             .show()
     }
+
 
 }

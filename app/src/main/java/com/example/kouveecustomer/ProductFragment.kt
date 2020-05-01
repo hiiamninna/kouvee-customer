@@ -1,5 +1,6 @@
 package com.example.kouveecustomer
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,8 @@ class ProductFragment : Fragment(), ProductView {
     private val productsSorted = ArrayList<Product>()
     private var selectedItem = -1
 
+    private var alertDialog: AlertDialog? = null
+
     companion object {
         fun newInstance() = ProductFragment()
         var products: MutableList<Product> = mutableListOf()
@@ -44,6 +47,7 @@ class ProductFragment : Fragment(), ProductView {
         super.onViewCreated(view, savedInstanceState)
         presenter = ProductPresenter(this, Repository())
         presenter.getAllProduct()
+        if (!CustomFun.verifiedNetwork(requireActivity())) warningDialog()
 
         search_view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -152,6 +156,9 @@ class ProductFragment : Fragment(), ProductView {
     }
 
     override fun productSuccess(data: ProductResponse?) {
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
         val temp = data?.products ?: emptyList()
         if (temp.isEmpty()){
             Toast.makeText(context, "Empty Product", Toast.LENGTH_LONG).show()
@@ -171,12 +178,27 @@ class ProductFragment : Fragment(), ProductView {
     }
 
     override fun productFailed() {
-        Toast.makeText(context, "Product Failed", Toast.LENGTH_LONG).show()
+        warningDialog()
     }
 
     private fun clearList(){
         productsList.clear()
         productsSorted.clear()
+    }
+
+    private fun warningDialog(){
+        alertDialog = AlertDialog.Builder(requireContext())
+            .setIcon(R.drawable.alert)
+            .setTitle("Warning message")
+            .setMessage("We needs internet connection to get some data, so make sure it run clearly.")
+            .setNeutralButton("EXIT"){ _: DialogInterface, _: Int ->
+                requireActivity().finishAffinity()
+            }
+            .setPositiveButton("TRY AGAIN"){ _: DialogInterface, _: Int ->
+                presenter.getAllProduct()
+            }
+            .setCancelable(false)
+            .show()
     }
 
 }

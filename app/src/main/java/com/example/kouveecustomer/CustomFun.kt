@@ -3,15 +3,16 @@ package com.example.kouveecustomer
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
-import com.skydoves.balloon.Balloon
-import com.skydoves.balloon.BalloonAnimation
-import com.skydoves.balloon.createBalloon
 import java.text.NumberFormat
 import java.util.*
 
@@ -84,39 +85,16 @@ object CustomFun {
         swipe.setProgressBackgroundColorSchemeResource(R.color.colorAccent)
     }
 
-    fun createToolTips(context: Context, type: String): Balloon {
-        return createBalloon(context) {
-            setArrowSize(5)
-            setWidthRatio(0.5f)
-            setHeight(40)
-            setCornerRadius(4f)
-            setAlpha(0.9f)
-            setTextTypeface(Typeface.BOLD)
-            setTextColorResource(android.R.color.black)
-            setBackgroundColorResource(Color.YELLOW)
-            setBalloonAnimation(BalloonAnimation.CIRCULAR)
-            setAutoDismissDuration(3000L)
-            when (type) {
-                "IG" -> {
-                    setArrowPosition(0.25f)
-                    setText("@kouveepetshop")
-                }
-                "LN" -> {
-                    setArrowPosition(0.5f)
-                    setText("@kouveepetshop")
-                }
-                "WA" -> {
-                    setArrowPosition(0.5f)
-                    setText("+62 812 3456 7890")
-                }
-                "FB" -> {
-                    setArrowPosition(0.5f)
-                    setText("Kouvee Pet Shop")
-                }
-
-            }
-            setLifecycleOwner(lifecycleOwner)
+    //NETWORK CHECK
+    fun verifiedNetwork(activity: FragmentActivity): Boolean{
+        val connectManager = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectManager.activeNetwork
+        if (network != null) {
+            val networkCapabilities = connectManager.getNetworkCapabilities(network)
+            return networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || networkCapabilities.hasTransport(
+                NetworkCapabilities.TRANSPORT_WIFI)
         }
+        return false
     }
 
 }

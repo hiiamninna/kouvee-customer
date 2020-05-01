@@ -52,6 +52,7 @@ class AboutUsFragment : Fragment(), ServiceView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (!CustomFun.verifiedNetwork(requireActivity())) warningDialog()
         presenter.getAllService()
         setMotto()
         setImage()
@@ -116,11 +117,9 @@ class AboutUsFragment : Fragment(), ServiceView {
     }
 
     override fun showServiceLoading() {
-        progress_circular.visibility = View.VISIBLE
     }
 
     override fun hideServiceLoading() {
-        progress_circular.visibility = View.GONE
     }
 
     override fun serviceSuccess(data: ServiceResponse?) {
@@ -273,6 +272,7 @@ class AboutUsFragment : Fragment(), ServiceView {
 
     private fun warningDialog(){
         alertDialog = AlertDialog.Builder(requireContext())
+            .setIcon(R.drawable.alert)
             .setTitle("Warning message")
             .setMessage("We needs internet connection to get some data, so make sure it run clearly.")
             .setNeutralButton("EXIT"){ _: DialogInterface, _: Int ->
