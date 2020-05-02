@@ -231,7 +231,7 @@ class AboutUsFragment : Fragment(), ServiceView {
                 }
                 "LN" -> {
                     //SHOW PROFILE
-                    newIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://line.me/R/nv/profile"))
+                    newIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://line.me/R/ti/p/greg987"))
                     //SHOW WITH ID ->> https://line.me/R/ti/p/{LINE ID}
                     activities = context.packageManager.queryIntentActivities(newIntent, 0)
                     isSafe = activities.isNotEmpty()
