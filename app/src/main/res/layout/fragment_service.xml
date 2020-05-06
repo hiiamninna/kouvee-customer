@@ -35,7 +35,18 @@
             app:queryHint="@string/input_service_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:iconifiedByDefault="false"/>
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/first_card"
@@ -51,10 +62,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view">
+
             <ImageView
                 android:id="@+id/image_first"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
+                android:alpha="0.7"
                 android:src="@drawable/first_service"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +82,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/looking_for"
                 android:textAlignment="center"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 app:layout_constraintEnd_toEndOf="@+id/image_first"
                 app:layout_constraintStart_toStartOf="@+id/image_first"
                 app:layout_constraintTop_toBottomOf="@+id/image_first" />
@@ -106,7 +119,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/failed_service"
                 android:textAlignment="center"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 app:layout_constraintEnd_toEndOf="@+id/image_failed"
                 app:layout_constraintStart_toStartOf="@+id/image_failed"
                 app:layout_constraintTop_toBottomOf="@+id/image_failed" />

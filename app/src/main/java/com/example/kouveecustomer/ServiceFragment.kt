@@ -13,23 +13,31 @@ import com.example.kouveecustomer.adapter.DetailTransactionRecyclerViewAdapter
 import com.example.kouveecustomer.model.*
 import com.example.kouveecustomer.presenter.*
 import com.example.kouveecustomer.repository.Repository
+import com.example.kouveemanagement.model.PetSize
+import com.example.kouveemanagement.model.PetSizeResponse
+import com.example.kouveemanagement.model.PetType
+import com.example.kouveemanagement.model.PetTypeResponse
 import kotlinx.android.synthetic.main.fragment_service.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionView, ServiceView, CustomerPetView {
+class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionView, ServiceView, CustomerPetView, PetTypeView, PetSizeView {
 
     private lateinit var transaction: Transaction
     private lateinit var idTransaction: String
     private var detailServices: MutableList<DetailServiceTransaction> = mutableListOf()
     private var services: MutableList<Service> = mutableListOf()
     private var pets: MutableList<CustomerPet> = mutableListOf()
+    private var petSizes: MutableList<PetSize> = mutableListOf()
+    private var petTypes: MutableList<PetType> = mutableListOf()
 
     private var presenterT = TransactionPresenter(this, Repository())
     private var presenterD = DetailServiceTransactionPresenter(this, Repository())
     private lateinit var presenterS: ServicePresenter
     private lateinit var presenterP: CustomerPetPresenter
+    private lateinit var presenterSize: PetSizePresenter
+    private lateinit var presenterType: PetTypePresenter
     private var alertDialog: AlertDialog? = null
 
     companion object {
@@ -45,6 +53,10 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenterSize = PetSizePresenter(this, Repository())
+        presenterSize.getAllPetSize()
+        presenterType = PetTypePresenter(this, Repository())
+        presenterType.getAllPetType()
         presenterP = CustomerPetPresenter(this, Repository())
         presenterP.getAllCustomerPet()
         presenterS = ServicePresenter(this, Repository())
@@ -65,14 +77,28 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     private fun setData(transaction: Transaction){
         id_transaction.text = transaction.id
-        for (i in pets.indices){
-            if (transaction.id_customer_pet == pets[i].id){
-                pet.text = pets[i].name
+        var type = ""
+        var nameOfPet  = ""
+        if (transaction.id_customer_pet.equals("1")){
+            pet.text = "Guest"
+        }else{
+            for (inputPet in pets){
+                if (transaction.id_customer_pet == inputPet.id){
+                    nameOfPet = inputPet.name.toString()
+                    type = inputPet.id_type.toString()
+                }
             }
+            for (t in petTypes){
+                if (t.id.equals(type)){
+                    type = t.name.toString()
+                }
+            }
+            pet.text = nameOfPet + " ( $type )"
         }
         status.text = transaction.status
         val price = transaction.total_price.toString()
         total_price.text = CustomFun.changeToRp(price.toDouble())
+        search_view.setQuery("", false)
     }
 
     private fun setFirstGone(){
@@ -98,9 +124,14 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
     }
 
     override fun showTransactionLoading() {
+        setFirstGone()
+        setFailedGone()
+        setSuccessGone()
+        progress_circular.visibility = View.VISIBLE
     }
 
     override fun hideTransactionLoading() {
+        progress_circular.visibility = View.GONE
     }
 
     override fun transactionSuccess(data: TransactionResponse?) {
@@ -109,13 +140,13 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         if (temp?.size == 0){
             setSuccessGone()
             setFailedVisible()
-            context?.let { view?.let { itView -> CustomFun.failedSnackBar(itView, it, "Oops, try again") } }
+            CustomFun.failedSnackBar(requireView(), requireContext(), "Oops, try again")
         }else{
             setFailedGone()
             setSuccessVisible()
             transaction = temp?.get(0)!!
             setData(transaction)
-            context?.let { view?.let { itView -> CustomFun.successSnackBar(itView, it, "Yes, found it") } }
+            CustomFun.successSnackBar(requireView(), requireContext(), "Yes, found it")
         }
     }
 
@@ -126,9 +157,14 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
     }
 
     override fun showDetailServiceTransactionLoading() {
+        setFirstGone()
+        setFailedGone()
+        setSuccessGone()
+        progress_circular.visibility = View.VISIBLE
     }
 
     override fun hideDetailServiceTransactionLoading() {
+        progress_circular.visibility = View.GONE
     }
 
     override fun detailServiceTransactionSuccess(data: DetailServiceTransactionResponse?) {
@@ -137,13 +173,13 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         setSuccessVisible()
         val temp: List<DetailServiceTransaction> = data?.detailServiceTransactions ?: emptyList()
         if (temp.isEmpty()){
-            context?.let { view?.let { itView -> CustomFun.warningSnackBar(itView, it, "Oops, try again") } }
+            CustomFun.failedSnackBar(requireView(), requireContext(), "Oops, try again")
         }else{
             detailServices.clear()
             detailServices.addAll(temp)
             recyclerview.layoutManager = LinearLayoutManager(context)
-            recyclerview.adapter = DetailTransactionRecyclerViewAdapter(detailServices, {}, services)
-            context?.let { view?.let { itView -> CustomFun.successSnackBar(itView, it, "Yes, found it") } }
+            recyclerview.adapter = DetailTransactionRecyclerViewAdapter(detailServices, {}, services, petSizes)
+            CustomFun.successSnackBar(requireView(), requireContext(), "Yes, found it")
         }
     }
 
@@ -151,7 +187,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         setFirstGone()
         setSuccessGone()
         setFailedVisible()
-        context?.let { view?.let { itView -> CustomFun.failedSnackBar(itView, it, "Oops, try again") } }
+        CustomFun.failedSnackBar(requireView(), requireContext(), "Oops, try again")
     }
 
     override fun showServiceLoading() {
@@ -164,9 +200,6 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
         if (alertDialog != null){
             alertDialog?.dismiss()
         }
-        if (alertDialog != null){
-            alertDialog?.dismiss()
-        }
         val temp: List<Service> = data?.services ?: emptyList()
         if (temp.isNotEmpty()){
             services.clear()
@@ -176,7 +209,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     override fun serviceFailed() {
         warningDialog()
-        context?.let { CustomFun.failedSnackBar(container, it, "Service failed") }
+        CustomFun.failedSnackBar(container, requireContext(), "Service failed")
     }
 
     override fun showCustomerPetLoading() {
@@ -198,7 +231,7 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
 
     override fun customerPetFailed() {
         warningDialog()
-        context?.let { CustomFun.failedSnackBar(container, it, "Pet failed") }
+        CustomFun.failedSnackBar(container, requireContext(), "Pet failed")
     }
 
     private fun warningDialog(){
@@ -210,11 +243,57 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
                 requireActivity().finishAffinity()
             }
             .setPositiveButton("TRY AGAIN"){ _: DialogInterface, _: Int ->
+                presenterSize.getAllPetSize()
+                presenterType.getAllPetType()
                 presenterS.getAllService()
                 presenterP.getAllCustomerPet()
             }
             .setCancelable(false)
             .show()
+    }
+
+    override fun showPetTypeLoading() {
+    }
+
+    override fun hidePetTypeLoading() {
+    }
+
+    override fun petTypeSuccess(data: PetTypeResponse?) {
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
+        val temp: List<PetType> = data?.pettype ?: emptyList()
+        if (temp.isNotEmpty()){
+            petTypes.clear()
+            petTypes.addAll(temp)
+        }
+    }
+
+    override fun petTypeFailed(data: String) {
+        warningDialog()
+        CustomFun.failedSnackBar(container, requireContext(), "Type failed")
+    }
+
+    override fun showPetSizeLoading() {
+    }
+
+    override fun hidePetSizeLoading() {
+    }
+
+    override fun petSizeSuccess(data: PetSizeResponse?) {
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
+        val temp: List<PetSize> = data?.petsize ?: emptyList()
+        if (temp.isNotEmpty()){
+            petSizes.clear()
+            petSizes.addAll(temp)
+        }
+    }
+
+    override fun petSizeFailed(data: String) {
+        warningDialog()
+        CustomFun.failedSnackBar(container, requireContext(), "Size failed")
     }
 
 

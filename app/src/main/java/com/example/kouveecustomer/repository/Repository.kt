@@ -2,6 +2,8 @@ package com.example.kouveecustomer.repository
 
 import com.example.kouveecustomer.api.ApiClient
 import com.example.kouveecustomer.model.*
+import com.example.kouveemanagement.model.PetSizeResponse
+import com.example.kouveemanagement.model.PetTypeResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -98,6 +100,47 @@ class Repository {
                     callback.serviceSuccess(response.body())
                 }else{
                     callback.serviceFailed()
+                }
+            }
+        })
+    }
+
+    //    PET TYPE
+    fun getAllPetType(callback: PetTypeRepositoryCallback<PetTypeResponse>) {
+        ApiClient().services.getAllPetType().enqueue(object : Callback<PetTypeResponse?> {
+            override fun onFailure(call: Call<PetTypeResponse?>, t: Throwable) {
+                callback.petTypeFailed(t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PetTypeResponse?>,
+                response: Response<PetTypeResponse?>
+            ) {
+                if (response.isSuccessful){
+                    callback.petTypeSuccess(response.body())
+                }else if (response.code() == 500){
+                    callback.petTypeFailed("Show error..")
+                }
+            }
+        })
+    }
+
+    //    PET SIZE
+    fun getAllPetSize(callback: PetSizeRepositoryCallback<PetSizeResponse>) {
+
+        ApiClient().services.getAllPetSize().enqueue(object : Callback<PetSizeResponse?> {
+            override fun onFailure(call: Call<PetSizeResponse?>, t: Throwable) {
+                callback.petSizeFailed(t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PetSizeResponse?>,
+                response: Response<PetSizeResponse?>
+            ) {
+                if (response.isSuccessful){
+                    callback.petSizeSuccess(response.body())
+                }else if (response.code() == 500){
+                    callback.petSizeFailed("Show error..")
                 }
             }
         })

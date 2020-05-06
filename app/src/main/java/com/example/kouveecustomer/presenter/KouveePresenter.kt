@@ -2,6 +2,8 @@ package com.example.kouveecustomer.presenter
 
 import com.example.kouveecustomer.model.*
 import com.example.kouveecustomer.repository.*
+import com.example.kouveemanagement.model.PetSizeResponse
+import com.example.kouveemanagement.model.PetTypeResponse
 
 //PRODUCT
 class ProductPresenter(private val view : ProductView, private val repository: Repository){
@@ -91,5 +93,40 @@ class ServicePresenter(private val view: ServiceView, private val repository: Re
             }
         })
     }
+}
 
+//PET SIZE
+class PetSizePresenter(private val view: PetSizeView, private val repository: Repository){
+
+    fun getAllPetSize(){
+        view.showPetSizeLoading()
+        repository.getAllPetSize(object : PetSizeRepositoryCallback<PetSizeResponse> {
+            override fun petSizeSuccess(data: PetSizeResponse?) {
+                view.petSizeSuccess(data)
+                view.hidePetSizeLoading()
+            }
+            override fun petSizeFailed(data: String) {
+                view.petSizeFailed(data)
+                view.hidePetSizeLoading()
+            }
+        })
+    }
+}
+
+//PET TYPE
+class PetTypePresenter(private val view: PetTypeView, private val repository: Repository){
+
+    fun getAllPetType(){
+        view.showPetTypeLoading()
+        repository.getAllPetType(object : PetTypeRepositoryCallback<PetTypeResponse> {
+            override fun petTypeSuccess(data: PetTypeResponse?) {
+                view.petTypeSuccess(data)
+                view.hidePetTypeLoading()
+            }
+            override fun petTypeFailed(data: String) {
+                view.petTypeFailed(data)
+                view.hidePetTypeLoading()
+            }
+        })
+    }
 }

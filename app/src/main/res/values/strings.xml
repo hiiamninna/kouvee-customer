@@ -77,7 +77,7 @@
     <string name="sort_a_z">Sort A-Z</string>
     <string name="welcome">welcome</string>
     <string name="title_service">Check your service</string>
-    <string name="failed_service">Sorry, transaction not found</string>
+    <string name="failed_service">Sorry, service transaction not found</string>
     <string name="transaction_number">Transaction ID</string>
     <string name="pet_name">Pet Name</string>
     <string name="status">Status</string>
@@ -86,6 +86,6 @@
     <string name="gallery">Gallery</string>
     <string name="gallery_desc">This is out pet shop..</string>
     <string name="review">Review</string>
-    <string name="input_service_id">Transaction ID</string>
+    <string name="input_service_id">Input Transaction ID</string>
     <string name="looking_for">Looking for transaction</string>
 </resources>

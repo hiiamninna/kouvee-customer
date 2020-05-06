@@ -2,6 +2,8 @@ package com.example.kouveecustomer.presenter
 
 import com.example.kouveecustomer.model.*
 import com.example.kouveecustomer.repository.*
+import com.example.kouveemanagement.model.PetSizeResponse
+import com.example.kouveemanagement.model.PetTypeResponse
 
 interface ProductView : ProductRepositoryCallback<ProductResponse> {
     fun showProductLoading()
@@ -26,4 +28,14 @@ interface ServiceView: ServiceRepositoryCallback<ServiceResponse> {
 interface CustomerPetView: CustomerPetRepositoryCallback<CustomerPetResponse> {
     fun showCustomerPetLoading()
     fun hideCustomerPetLoading()
+}
+
+interface PetSizeView: PetSizeRepositoryCallback<PetSizeResponse> {
+    fun showPetSizeLoading()
+    fun hidePetSizeLoading()
+}
+
+interface PetTypeView: PetTypeRepositoryCallback<PetTypeResponse> {
+    fun showPetTypeLoading()
+    fun hidePetTypeLoading()
 }

@@ -24,3 +24,13 @@ interface CustomerPetRepositoryCallback<CustomerPetResponse> {
     fun customerPetSuccess(data: CustomerPetResponse?)
     fun customerPetFailed()
 }
+
+interface PetSizeRepositoryCallback<PetSizeResponse> {
+    fun petSizeSuccess(data: PetSizeResponse?)
+    fun petSizeFailed(data: String)
+}
+
+interface PetTypeRepositoryCallback<PetTypeResponse> {
+    fun petTypeSuccess(data: PetTypeResponse?)
+    fun petTypeFailed(data: String)
+}
