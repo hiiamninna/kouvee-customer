@@ -1,16 +1,9 @@
 package com.example.kouveecustomer
 
-import android.content.DialogInterface
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.kouveecustomer.model.*
-import com.example.kouveecustomer.presenter.CustomerPetPresenter
-import com.example.kouveecustomer.presenter.CustomerPetView
-import com.example.kouveecustomer.presenter.ServicePresenter
-import com.example.kouveecustomer.presenter.ServiceView
-import com.example.kouveecustomer.repository.Repository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -42,10 +35,10 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
-    private fun addFragment(input: Fragment){
+    private fun addFragment(newFragment: Fragment){
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.content, input, input.javaClass.simpleName)
+            .replace(R.id.content, newFragment)
             .commit()
     }
 

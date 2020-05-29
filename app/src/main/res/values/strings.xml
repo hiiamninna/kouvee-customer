@@ -88,4 +88,9 @@
     <string name="review">Review</string>
     <string name="input_service_id">Input Transaction ID</string>
     <string name="looking_for">Looking for transaction</string>
+    <string name="discount">Discount</string>
+    <string name="payment">Payment</string>
+    <string name="customer_service">Customer Service</string>
+    <string name="cashier">Cashier</string>
+    <string name="detail">Detail</string>
 </resources>

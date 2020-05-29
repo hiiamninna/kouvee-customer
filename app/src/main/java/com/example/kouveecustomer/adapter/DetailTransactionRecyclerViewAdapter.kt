@@ -53,8 +53,10 @@ class DetailTransactionRecyclerViewAdapter(private val detailServices: MutableLi
                     sizeTxt = size.name.toString()
                 }
             }
-            id.text = name + " $sizeTxt"
-            quantity.text = detailServiceTransaction.quantity.toString() + " x " + CustomFun.changeToRp(price.toDouble())
+            id.text = "$name $sizeTxt"
+            val quantityFirst = detailServiceTransaction.quantity.toString()
+            val priceFirst = CustomFun.changeToRp(price.toDouble())
+            quantity.text =  "$quantityFirst x $priceFirst"
             val total = detailServiceTransaction.subtotal_price.toString()
             subtotal.text = CustomFun.changeToRp(total.toDouble())
             containerView.setOnClickListener {

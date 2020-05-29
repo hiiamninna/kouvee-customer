@@ -93,11 +93,28 @@ class ServiceFragment : Fragment(), TransactionView, DetailServiceTransactionVie
                     type = t.name.toString()
                 }
             }
-            pet.text = nameOfPet + " ( $type )"
+            pet.text = "$nameOfPet ( $type )"
         }
         status.text = transaction.status
+        val discountFirst = transaction.discount.toString()
+        if (discountFirst == ""){
+            discount.text = CustomFun.changeToRp(0.00)
+        }else{
+            discount.text = CustomFun.changeToRp(discountFirst.toDouble())
+        }
         val price = transaction.total_price.toString()
         total_price.text = CustomFun.changeToRp(price.toDouble())
+        if (transaction.payment.equals("0")){
+            payment.text = "Not Yet Paid Off"
+        }else{
+            payment.text = "Paid Off"
+        }
+        cs.text = transaction.last_cs.toString()
+        if (!transaction.last_cr.isNullOrEmpty()) {
+            cr.text = transaction.last_cr.toString()
+        } else {
+            cr.text = "-"
+        }
         search_view.setQuery("", false)
     }
 
