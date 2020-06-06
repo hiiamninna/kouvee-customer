@@ -89,6 +89,9 @@ class AboutUsFragment : Fragment(), ServiceView {
     }
 
     private fun setResource(){
+        if (alertDialog != null){
+            alertDialog?.dismiss()
+        }
         var i = 0
         val image = resources.obtainTypedArray(R.array.image_service)
         images.clear()
@@ -97,6 +100,13 @@ class AboutUsFragment : Fragment(), ServiceView {
             i++
         }
         image.recycle()
+        enServices.clear()
+        enServices.add(Service(name = "Membersihkan Kutu", price = 40000.0))
+        enServices.add(Service(name = "Pedicure", price = 20000.0))
+        enServices.add(Service(name = "Penitiapan", price = 30000.0))
+        enServices.add(Service(name = "Grooming", price = 20000.0))
+        rv_service.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rv_service.adapter = ServiceRecyclerViewAdapter(images, enServices)
     }
 
     private fun setMotto(){
@@ -123,21 +133,7 @@ class AboutUsFragment : Fragment(), ServiceView {
     }
 
     override fun serviceSuccess(data: ServiceResponse?) {
-        if (alertDialog != null){
-            alertDialog?.dismiss()
-        }
         setResource()
-        val temp: List<Service> = data?.services ?: emptyList()
-        if (temp.isNotEmpty()){
-            enServices.clear()
-            for (i in temp.indices){
-                if (temp[i].deleted_at.isNullOrEmpty()){
-                    enServices.add(temp[i])
-                }
-            }
-            rv_service.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            rv_service.adapter = ServiceRecyclerViewAdapter(images, enServices)
-        }
     }
 
     override fun serviceFailed() {
