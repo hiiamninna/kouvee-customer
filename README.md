@@ -31,5 +31,4 @@ Using kotlin and xml, native android language and try to use MVP Pattern.
 - [x] skydoves:balloon (https://github.com/skydoves/Balloon)
 
 ## Sincerely
-Thank you all 💋
-Halo, feel free to ask or just contact to know more 👋🏻
+Thank you all 💋, feel free to ask or just contact to know more 👋🏻
